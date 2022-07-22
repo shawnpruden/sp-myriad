@@ -1,0 +1,323 @@
+import styled from 'styled-components';
+
+export const Container = styled.div`
+  display: flex;
+
+  width: 100vw;
+  padding: 0 6rem 5rem;
+`;
+
+export const Left = styled.div`
+  flex: 1;
+
+  position: sticky;
+  top: 2rem;
+
+  height: 100%;
+  margin-top: 6rem;
+`;
+
+export const Frame = styled.div`
+  position: relative;
+
+  width: 90%;
+
+  img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0.5rem;
+    left: 0.5rem;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--color-primary);
+  }
+`;
+
+export const Catalog = styled.ul`
+  margin-top: 2rem;
+  padding-left: 1.5rem;
+
+  a {
+    display: inline-block;
+
+    margin: 0.5rem 0;
+
+    color: var(--color-gray-alt);
+    font-size: 1.1rem;
+
+    cursor: pointer;
+
+    transition: 0.5s;
+    &:hover {
+      color: var(--color-white);
+    }
+  }
+
+  i {
+    font-size: 0.8rem;
+
+    margin-right: 0.2rem;
+
+    opacity: 0;
+  }
+
+  .active {
+    color: var(--color-white);
+
+    i {
+      color: var(--color-primary);
+
+      opacity: 1;
+    }
+  }
+`;
+
+export const Right = styled.div`
+  flex: 3;
+
+  position: relative;
+
+  overflow: hidden;
+`;
+
+export const FadeEffect = styled.div`
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 40%;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(17, 17, 17, 0.6),
+    #111
+  );
+
+  transition: 0.5s;
+`;
+
+export const Video = styled.div`
+  position: relative;
+
+  padding-top: 4rem;
+
+  iframe,
+  img {
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+  }
+
+  img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &:hover ${FadeEffect} {
+    opacity: 0;
+    visibility: hidden;
+  }
+`;
+
+export const Content = styled.div`
+  padding: 0 2rem;
+`;
+
+// * Info-related
+export const InfoWrapper = styled.section`
+  color: var(--color-gray-alt);
+  font-size: 0.9rem;
+
+  p {
+    line-height: 1.4;
+  }
+`;
+
+export const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+export const Title = styled.h4`
+  color: var(--color-white);
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+`;
+
+export const Rate = styled.h3`
+  display: flex;
+  align-items: center;
+
+  color: var(--color-primary);
+  font-size: 3rem;
+
+  svg {
+    font-size: 1.5rem;
+    margin: 0 0.4rem;
+  }
+`;
+
+export const InfoGroup = styled.div`
+  display: flex;
+  align-items: center;
+
+  margin: 0.5rem 0;
+`;
+
+export const Logo = styled.div`
+  margin-right: 0.5rem;
+
+  img {
+    width: 50px;
+    padding: 0.3rem;
+
+    border-radius: 3px;
+
+    background-color: var(--color-white);
+  }
+`;
+
+export const InfoContent = styled.div`
+  span:last-child {
+    text-transform: uppercase;
+  }
+`;
+
+export const Note = styled.p`
+  color: var(--color-primary);
+`;
+
+export const Genre = styled.span`
+  display: inline-block;
+
+  padding: 0.2rem 0.4rem;
+  margin: 0.5rem 0.5rem 1rem 0;
+
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
+  border-radius: 5px;
+`;
+
+export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 135px;
+  height: 40px;
+  margin-top: 1rem;
+
+  color: var(--color-primary);
+
+  border: 1px solid var(--color-primary);
+  background-color: transparent;
+
+  cursor: pointer;
+
+  opacity: 0.8;
+
+  transition: 0.5s;
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+// * Casts-related
+export const Subtitle = styled.h3`
+  position: relative;
+
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+
+  margin-bottom: 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -0.6rem;
+
+    width: 3px;
+    height: 100%;
+
+    border-radius: 50px;
+    background-color: var(--color-primary);
+  }
+`;
+
+export const CastsGrid = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+`;
+
+export const GridItem = styled.li`
+  display: flex;
+
+  div {
+    padding: 2rem 0 0 2rem;
+  }
+
+  img {
+    width: 120px;
+    height: 120px;
+
+    aspect-ratio: 1;
+
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+  }
+
+  h5 {
+    font-size: 1rem;
+
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: var(--color-gray-alt);
+    font-size: 0.9rem;
+  }
+`;
+
+// * Trailer-related
+export const TrailerWrapper = styled.div`
+  iframe {
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    margin-bottom: 4rem;
+  }
+`;
+
+export const Divider = styled.hr`
+  margin: 2rem 0;
+
+  background-color: #343a40;
+  border: none;
+
+  width: 100%;
+  height: 1px;
+`;
+
+export const grayed = {
+  color: 'var(--color-gray)',
+  border: '1px solid var(--color-gray)',
+};
