@@ -9,7 +9,6 @@ import {
   Center,
   centralized,
   Container,
-  inactive,
   Input,
   Left,
   Logo,
@@ -150,7 +149,7 @@ export default function Navbar() {
 
       <Center
         onMouseLeave={() => lg && setIsActive(false)}
-        style={xs ? (isHidden ? inactive : active) : {}}
+        style={isHidden ? {} : active}
       >
         <SearchBar
           onSubmit={(e) => handleSearch(e)}

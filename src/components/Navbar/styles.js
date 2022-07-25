@@ -125,6 +125,9 @@ export const Center = styled.div`
     height: 56px;
 
     background-color: #000;
+
+    opacity: 0;
+    visibility: hidden;
   }
 `;
 
