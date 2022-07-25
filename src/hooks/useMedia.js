@@ -22,6 +22,8 @@ export function MediaProvider({ children }) {
   };
 
   useEffect(() => {
+    handleResize();
+
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
