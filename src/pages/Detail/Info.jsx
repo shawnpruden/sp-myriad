@@ -44,7 +44,7 @@ export default function Info({ item, type }) {
       </Header>
 
       <InfoGroup>
-        <Networks>
+        <Networks isAvailable={!!item.networks?.length}>
           {item.networks?.map(({ id, logo_path, name }) => (
             <Logo key={id}>
               {logo_path ? (

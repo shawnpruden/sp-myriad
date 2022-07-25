@@ -230,7 +230,7 @@ export const InfoGroup = styled.div`
 
   margin: 0.5rem 0;
 
-  @media ${bp.md} {
+  @media ${bp.xs}, ${bp.md} {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -240,8 +240,8 @@ export const Networks = styled.ul`
   display: flex;
   align-items: center;
 
-  @media ${bp.md} {
-    margin-bottom: 0.5rem;
+  @media ${bp.xs}, ${bp.md} {
+    margin-bottom: ${({ isAvailable }) => isAvailable && '0.5rem'};
   }
 `;
 
