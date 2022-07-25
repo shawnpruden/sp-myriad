@@ -23,9 +23,7 @@ const reduce = (arr) => {
       result.push(curObj);
     }
 
-    return result
-      .filter((item) => item.poster_path)
-      .sort(() => 0.5 - Math.random());
+    return result.filter((item) => item.poster_path);
   }, []);
 };
 
