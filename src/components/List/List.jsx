@@ -10,6 +10,7 @@ import { Button, Container, Header, Title, Underline, Wrapper } from './styles';
 
 import Card from '../Card/Card';
 import tmdb, { mediaType } from '../../apis/tmdb';
+import { useMedia } from '../../hooks';
 
 const reduce = (arr) => {
   return arr.reduce((result, curObj) => {
@@ -25,6 +26,8 @@ export default function List({ title, path, type, dataType, id }) {
   const [items, setItems] = useState([]);
 
   const navigate = useNavigate();
+
+  const { xs } = useMedia();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,7 +82,7 @@ export default function List({ title, path, type, dataType, id }) {
           freeMode={true}
           navigation={true}
           mousewheel={{ forceToAxis: true }} // > disable swipe on y-axis
-          spaceBetween={20}
+          spaceBetween={xs ? 10 : 20}
           slidesPerView={'auto'}
           slidesPerGroup={5}
         >

@@ -13,7 +13,7 @@ import {
   setDoc,
 } from 'firebase/firestore';
 
-import { useAuth } from './useAuth';
+import useAuth from './useAuth';
 
 const toaster = {
   color: 'var(--color-white)',
@@ -26,10 +26,9 @@ const toaster = {
 
 const title = {
   color: 'var(--color-primary)',
-  fontWeight: 'bold',
 };
 
-export function useList(item, type) {
+export default function useList(item, type) {
   const [list, setList] = useState([]);
 
   const [isAdded, setIsAdded] = useState(false);
@@ -81,14 +80,15 @@ export function useList(item, type) {
 
       toast(
         <>
-          <span style={title}>
-            {item?.title ||
-              item?.original_title ||
-              item?.name ||
-              item?.original_name}
+          <span>
+            <b style={title}>
+              {item?.title ||
+                item?.original_title ||
+                item?.name ||
+                item?.original_name}
+            </b>
+            &nbsp; has been removed from Watchlist.
           </span>
-          &nbsp;
-          <span>has been removed from Watchlist.</span>
         </>,
 
         {
@@ -107,15 +107,17 @@ export function useList(item, type) {
 
       toast(
         <>
-          <span style={title}>
-            {item?.title ||
-              item?.original_title ||
-              item?.name ||
-              item?.original_name}
+          <span>
+            <b style={title}>
+              {item?.title ||
+                item?.original_title ||
+                item?.name ||
+                item?.original_name}
+            </b>
+            &nbsp; has been added to Watchlist.
           </span>
-          &nbsp;
-          <span>has been added to Watchlist.</span>
         </>,
+
         {
           duration: 5000,
           style: toaster,

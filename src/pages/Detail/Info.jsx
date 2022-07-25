@@ -11,6 +11,7 @@ import {
   InfoGroup,
   InfoWrapper,
   Logo,
+  Networks,
   Note,
   Rate,
   Title,
@@ -18,8 +19,7 @@ import {
 
 import { Loader } from '../../components/Loader';
 
-import { useUpdate } from '../../hooks/useUpdate';
-import { useList } from '../../hooks/useList';
+import { useList, useUpdate } from '../../hooks';
 
 const convert = (mins) => `${Math.trunc(mins / 60)}h ${mins % 60}m`;
 
@@ -44,17 +44,19 @@ export default function Info({ item, type }) {
       </Header>
 
       <InfoGroup>
-        {item.networks?.map(({ id, logo_path, name }) => (
-          <Logo key={id}>
-            {logo_path ? (
-              <img
-                src={`https://image.tmdb.org/t/p/w500${logo_path}?${Date.now()}`}
-                alt={name}
-                onError={logo_path && update}
-              />
-            ) : null}
-          </Logo>
-        ))}
+        <Networks>
+          {item.networks?.map(({ id, logo_path, name }) => (
+            <Logo key={id}>
+              {logo_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${logo_path}?${Date.now()}`}
+                  alt={name}
+                  onError={logo_path && update}
+                />
+              ) : null}
+            </Logo>
+          ))}
+        </Networks>
 
         <InfoContent>
           {(item.release_date || item.first_air_date) && (

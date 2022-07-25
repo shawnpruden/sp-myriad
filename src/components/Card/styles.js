@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { bp } from '../../mobile';
 
 export const Details = styled.div`
   position: absolute;
@@ -8,6 +9,7 @@ export const Details = styled.div`
   right: 0;
 
   opacity: 0;
+  visibility: hidden;
 
   overflow-y: auto;
 `;
@@ -17,40 +19,44 @@ export const Container = styled.div`
 
   cursor: pointer;
 
-  transition: 0.5s;
-  &:hover {
-    z-index: 5;
-    transform: scale(1.2);
-  }
+  @media ${bp.lg} {
+    transition: 0.5s;
+    &:hover {
+      z-index: 5;
+      transform: scale(1.2);
+    }
 
-  &:hover ${Details} {
-    transition: 0.5s 0.6s;
+    &:hover ${Details} {
+      transition: 0.5s 0.6s;
 
-    z-index: 10;
-    opacity: 1;
-  }
+      z-index: 10;
 
-  &::before {
-    content: '';
+      opacity: 1;
+      visibility: visible;
+    }
 
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    &::before {
+      content: '';
 
-    background-color: #000;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
 
-    opacity: 0;
-    transform: scale(0);
-  }
+      background-color: #000;
 
-  &:hover::before {
-    transition: 0.5s 0.3s;
+      opacity: 0;
+      transform: scale(0);
+    }
 
-    z-index: 5;
-    opacity: 0.9;
-    transform: scale(1);
+    &:hover::before {
+      transition: 0.5s 0.3s;
+
+      z-index: 5;
+      opacity: 0.9;
+      transform: scale(1);
+    }
   }
 `;
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { bp } from '../../mobile';
 
 export const Header = styled.header`
   position: relative;
@@ -31,10 +32,22 @@ export const Header = styled.header`
       #111
     );
   }
+
+  @media ${bp.xs}, ${bp.md} {
+    height: 30vh;
+  }
 `;
 
 export const Container = styled.section`
-  padding: 0 8rem 5rem;
+  padding: 0 8rem 6rem;
+
+  @media ${bp.xs} {
+    padding: 0 1rem 6rem;
+  }
+
+  @media ${bp.md} {
+    padding: 0 2rem 6rem;
+  }
 `;
 
 export const Title = styled.h3`
@@ -59,12 +72,28 @@ export const Title = styled.h3`
     border-radius: 50px;
     background-color: var(--color-primary);
   }
+
+  @media ${bp.xs} {
+    left: 1rem;
+
+    font-size: 1.5rem;
+
+    margin-bottom: 1rem;
+  }
+
+  @media ${bp.md} {
+    margin-bottom: 1.5rem;
+  }
 `;
 
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
+
+  @media ${bp.xs} {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 export const Button = styled.button`
@@ -89,5 +118,9 @@ export const Button = styled.button`
     color: var(--color-white);
     background-position: left;
     background-size: 100%;
+  }
+
+  @media ${bp.xs} {
+    margin: 1.5rem auto 0;
   }
 `;

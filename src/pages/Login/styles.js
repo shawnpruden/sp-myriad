@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { bp } from '../../mobile';
 
 export const Container = styled.section`
   display: flex;
@@ -7,6 +8,14 @@ export const Container = styled.section`
 
   width: 100vw;
   height: 100vh;
+
+  @media ${bp.xs} {
+    margin-top: 3rem;
+  }
+
+  @media ${bp.md} {
+    margin-top: 6rem;
+  }
 `;
 
 export const Logo = styled.h1`
@@ -30,6 +39,15 @@ export const Wrapper = styled.div`
   transition: 0.5s;
 
   text-align: center;
+
+  @media ${bp.xs} {
+    width: 100%;
+    padding: 0 1.5rem;
+  }
+
+  @media ${bp.md} {
+    padding: 0;
+  }
 `;
 
 export const Title = styled.h3`

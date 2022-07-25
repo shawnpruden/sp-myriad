@@ -1,7 +1,12 @@
 import styled from 'styled-components';
+import { bp } from '../../mobile';
 
 export const Container = styled.div`
   margin-bottom: 5rem;
+
+  @media ${bp.xs}, ${bp.md} {
+    margin-bottom: 3rem;
+  }
 `;
 
 export const Header = styled.div`
@@ -10,6 +15,10 @@ export const Header = styled.div`
   align-items: center;
 
   margin-bottom: 2rem;
+
+  @media ${bp.xs}, ${bp.md} {
+    margin-bottom: 0.8rem;
+  }
 `;
 
 export const Title = styled.h3`
@@ -18,15 +27,24 @@ export const Title = styled.h3`
   font-size: 1.5rem;
   font-weight: 300;
   letter-spacing: 1px;
+
+  @media ${bp.xs} {
+    font-size: 1.2rem;
+  }
 `;
 
 export const Underline = styled.div`
   width: 50%;
-  height: 4px;
+  height: 3px;
   background-color: var(--color-primary);
   border-radius: 5px;
 
   margin-top: 0.5rem;
+
+  @media ${bp.xs} {
+    height: 2px;
+    margin-top: 0.2rem;
+  }
 `;
 
 export const Button = styled.button`
@@ -39,6 +57,7 @@ export const Button = styled.button`
 
   font-size: 1rem;
   color: unset;
+  opacity: 0.6;
 
   transition: 0.5s;
   &:hover {
@@ -49,6 +68,14 @@ export const Button = styled.button`
     font-size: 0.8rem;
 
     margin-left: 0.2rem;
+  }
+
+  @media ${bp.xs} {
+    font-size: 0.8rem;
+
+    svg {
+      font-size: 0.6rem;
+    }
   }
 `;
 
@@ -87,5 +114,27 @@ export const Wrapper = styled.div`
 
   .swiper-button-disabled {
     opacity: 0;
+  }
+
+  @media ${bp.xs} {
+    .swiper-slide {
+      width: 30%;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      display: none;
+    }
+  }
+
+  @media ${bp.md} {
+    .swiper-slide {
+      width: 22%;
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      font-size: 2rem;
+    }
   }
 `;

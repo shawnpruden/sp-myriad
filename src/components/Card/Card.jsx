@@ -24,8 +24,7 @@ import { mediaType } from '../../apis/tmdb';
 import noImage from '../../assets/img-not-available.png';
 import { movieGenres, tvGenres } from '../../apis/genres';
 
-import { useList } from '../../hooks/useList';
-import { useUpdate } from '../../hooks/useUpdate';
+import { useList, useUpdate } from '../../hooks';
 
 const truncate = (str, num) =>
   str?.length > num ? str.slice(0, num - 1) + '...' : str;

@@ -20,15 +20,7 @@ import {
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
-const AuthContext = createContext({
-  error: null,
-  isLoading: false,
-  user: null,
-  handleSignUp: async () => {},
-  handleSignIn: async () => {},
-  handleSignOut: async () => {},
-  handleReset: async () => {},
-});
+const AuthContext = createContext({});
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -186,6 +178,6 @@ export function AuthProvider({ children }) {
   );
 }
 
-export function useAuth() {
+export default function useAuth() {
   return useContext(AuthContext);
 }

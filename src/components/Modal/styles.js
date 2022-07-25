@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { bp } from '../../mobile';
 
 export const Backdrop = styled.div`
   display: flex;
@@ -64,6 +65,10 @@ export const Content = styled.div`
     text-align: center;
 
     padding-top: 20%;
+  }
+
+  @media ${bp.xs} {
+    --w: 90vw;
   }
 `;
 

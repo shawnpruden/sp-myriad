@@ -4,8 +4,23 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Slider, List } from '../components';
 
 import { mediaType, movieType, timeWindow, tvType } from '../apis/tmdb';
+import { useMedia } from '../hooks';
 
-const container = { padding: '5rem 2rem 5rem 8rem', overflowX: 'hidden' };
+const lgContainer = { padding: '5rem 2rem 5rem 8rem', overflowX: 'hidden' };
+
+const mdContainer = {
+  padding: '0 2rem',
+  margin: '1rem 0 2rem',
+
+  overflowX: 'hidden',
+};
+
+const xsContainer = {
+  padding: '0 1rem',
+  margin: '8rem 0 2rem',
+
+  overflowX: 'hidden',
+};
 
 export const firstRender = [
   {
@@ -75,6 +90,15 @@ const listsData = [firstRender, secondRender, thirdRender];
 function Home() {
   const [lists, setLists] = useState([]);
   const [counter, setCounter] = useState(0);
+
+  const { xs, md } = useMedia();
+
+  const container = (() => {
+    if (xs) return xsContainer;
+    if (md) return mdContainer;
+
+    return lgContainer;
+  })();
 
   useEffect(() => {
     setLists((prevState) => [...prevState, ...listsData[counter]]);

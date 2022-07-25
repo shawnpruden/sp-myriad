@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export function useScroll() {
+export default function useScroll() {
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [bodyOffset, setBodyOffset] = useState(
     document.body.getBoundingClientRect()

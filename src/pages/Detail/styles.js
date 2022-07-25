@@ -1,10 +1,19 @@
 import styled from 'styled-components';
+import { bp } from '../../mobile';
 
 export const Container = styled.div`
   display: flex;
 
   width: 100vw;
   padding: 0 6rem 5rem;
+
+  @media ${bp.xs} {
+    padding: 0 0 3rem;
+  }
+
+  @media ${bp.md} {
+    padding: 0 1rem 3rem;
+  }
 `;
 
 export const Left = styled.div`
@@ -15,6 +24,10 @@ export const Left = styled.div`
 
   height: 100%;
   margin-top: 6rem;
+
+  @media ${bp.xs} {
+    display: none;
+  }
 `;
 
 export const Frame = styled.div`
@@ -78,6 +91,16 @@ export const Catalog = styled.ul`
       opacity: 1;
     }
   }
+
+  @media ${bp.md} {
+    a {
+      font-size: 0.9rem;
+    }
+
+    i {
+      font-size: 0.6rem;
+    }
+  }
 `;
 
 export const Right = styled.div`
@@ -128,10 +151,22 @@ export const Video = styled.div`
     opacity: 0;
     visibility: hidden;
   }
+
+  @media ${bp.xs} {
+    padding-top: 40px;
+  }
 `;
 
 export const Content = styled.div`
   padding: 0 2rem;
+
+  @media ${bp.xs}, ${bp.md} {
+    position: relative;
+    z-index: 5;
+    top: -0.5rem;
+
+    padding: 0 1rem;
+  }
 `;
 
 // * Info-related
@@ -148,6 +183,10 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
+  @media ${bp.xs}, ${bp.md} {
+    flex-direction: column-reverse;
+  }
 `;
 
 export const Title = styled.h4`
@@ -156,6 +195,12 @@ export const Title = styled.h4`
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: uppercase;
+
+  @media ${bp.xs}, ${bp.md} {
+    align-self: flex-start;
+
+    font-size: 1.8rem;
+  }
 `;
 
 export const Rate = styled.h3`
@@ -169,6 +214,14 @@ export const Rate = styled.h3`
     font-size: 1.5rem;
     margin: 0 0.4rem;
   }
+
+  @media ${bp.xs}, ${bp.md} {
+    font-size: 2rem;
+
+    svg {
+      font-size: 1.2rem;
+    }
+  }
 `;
 
 export const InfoGroup = styled.div`
@@ -176,9 +229,23 @@ export const InfoGroup = styled.div`
   align-items: center;
 
   margin: 0.5rem 0;
+
+  @media ${bp.md} {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
-export const Logo = styled.div`
+export const Networks = styled.ul`
+  display: flex;
+  align-items: center;
+
+  @media ${bp.md} {
+    margin-bottom: 0.5rem;
+  }
+`;
+
+export const Logo = styled.li`
   margin-right: 0.5rem;
 
   img {
@@ -258,12 +325,34 @@ export const Subtitle = styled.h3`
     border-radius: 50px;
     background-color: var(--color-primary);
   }
+
+  @media ${bp.xs} {
+    left: 1rem;
+
+    margin-bottom: 1.5rem;
+  }
+
+  @media ${bp.md} {
+    font-size: 1.4rem;
+
+    margin-bottom: 1.5rem;
+  }
 `;
 
 export const CastsGrid = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+
+  @media ${bp.xs} {
+    grid-template-columns: 1fr;
+
+    padding-left: 1rem;
+  }
+
+  @media ${bp.md} {
+    column-gap: 1rem;
+  }
 `;
 
 export const GridItem = styled.li`
@@ -294,6 +383,36 @@ export const GridItem = styled.li`
     color: var(--color-gray-alt);
     font-size: 0.9rem;
   }
+
+  @media ${bp.xs} {
+    div {
+      padding: 1.2rem 0 0 2rem;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  @media ${bp.md} {
+    div {
+      padding: 0.8rem 0 0 1rem;
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+    }
+
+    h5 {
+      font-size: 0.8rem;
+    }
+
+    p {
+      font-size: 0.7rem;
+    }
+  }
 `;
 
 // * Trailer-related
@@ -304,6 +423,18 @@ export const TrailerWrapper = styled.div`
     aspect-ratio: 16 / 9;
 
     margin-bottom: 4rem;
+  }
+
+  @media ${bp.xs} {
+    iframe {
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media ${bp.md} {
+    iframe {
+      margin-bottom: 2rem;
+    }
   }
 `;
 

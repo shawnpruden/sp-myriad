@@ -9,13 +9,13 @@ import 'swiper/css/navigation';
 import { Footer, Navbar } from './components';
 import { Detail, Gallery, Home, Login } from './pages';
 
-import { AuthProvider } from './hooks/useAuth';
+import { ContextProviders } from './hooks';
 
 export default function App() {
   const { pathname } = useLocation();
 
   return (
-    <AuthProvider>
+    <ContextProviders>
       {pathname !== '/login' && <Navbar />}
 
       <Routes>
@@ -33,6 +33,6 @@ export default function App() {
       <Toaster position="bottom-center" />
 
       {pathname !== '/login' && <Footer />}
-    </AuthProvider>
+    </ContextProviders>
   );
 }

@@ -17,6 +17,8 @@ import {
 
 import Modal from '../Modal/Modal';
 
+import { useMedia } from '../../hooks';
+
 import tmdb from '../../apis/tmdb';
 
 const truncate = (str, num) =>
@@ -35,14 +37,24 @@ export default function SliderItem({
   const [videoSrc, setVideoSrc] = useState('');
   const navigate = useNavigate();
 
+  const { xs } = useMedia();
+
   const handleFetchVideos = async (type, id) => {
     try {
       const { results } = await tmdb.getVideos(type, id);
       console.log(results);
+
       if (results.length) {
-        setVideoSrc(
-          `https://www.youtube.com/embed/${results[0].key}?autoplay=1&rel=0`
-        );
+        !xs &&
+          setVideoSrc(
+            `https://www.youtube.com/embed/${results[0].key}?autoplay=1&rel=0`
+          );
+
+        xs &&
+          window.open(
+            `https://www.youtube.com/watch?v=${results[0].key}`,
+            '_blank'
+          );
       } else {
         setIsAvailable(false);
       }
@@ -52,9 +64,11 @@ export default function SliderItem({
   };
 
   const handleTrailer = () => {
-    setIsActive(true);
     !videoSrc.length && handleFetchVideos(trend.media_type, trend.id);
 
+    if (xs) return;
+
+    setIsActive(true);
     clearInterval(intervalId);
   };
 
@@ -77,7 +91,11 @@ export default function SliderItem({
       </Modal>
 
       <Banner
-        src={`https://image.tmdb.org/t/p/original${trend.backdrop_path}`}
+        src={
+          xs
+            ? `https://image.tmdb.org/t/p/w500${trend.poster_path}`
+            : `https://image.tmdb.org/t/p/original${trend.backdrop_path}`
+        }
         alt={
           trend.title ||
           trend.original_title ||
@@ -96,7 +114,7 @@ export default function SliderItem({
         </Title>
 
         <Description style={isMatched ? forward : backward}>
-          {truncate(trend.overview, 250)}
+          {xs ? truncate(trend.overview, 150) : truncate(trend.overview, 250)}
         </Description>
 
         <ButtonGroup style={isMatched ? forward : backward}>

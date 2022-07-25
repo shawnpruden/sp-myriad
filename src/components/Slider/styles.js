@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { bp } from '../../mobile';
 
 export const Container = styled.header`
   position: relative;
@@ -41,6 +42,18 @@ export const Container = styled.header`
       #111
     );
   }
+
+  @media ${bp.xs}, ${bp.md} {
+    height: 80vh;
+
+    &::before {
+      display: none;
+    }
+
+    &::after {
+      height: 50vh;
+    }
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -76,6 +89,16 @@ export const ArrowButton = styled.div`
   &:hover {
     opacity: 1;
   }
+
+  @media ${bp.xs} {
+    display: none;
+  }
+
+  @media ${bp.md} {
+    font-size: 2rem;
+
+    width: 3rem;
+  }
 `;
 
 export const Banner = styled.img`
@@ -107,6 +130,23 @@ export const Content = styled.div`
   transition: 1.5s;
   opacity: 0;
   visibility: hidden;
+
+  @media ${bp.xs} {
+    left: 0;
+
+    width: 100%;
+    padding: 0 1rem;
+
+    justify-content: flex-end;
+  }
+
+  @media ${bp.md} {
+    top: unset;
+    left: 2rem;
+
+    max-width: 70vw;
+    height: 40vh;
+  }
 `;
 
 export const Title = styled.h3`
@@ -115,6 +155,16 @@ export const Title = styled.h3`
   letter-spacing: 1px;
 
   transition: 0.5s 0.3s;
+
+  @media ${bp.xs} {
+    font-size: 2rem;
+
+    transition: none;
+  }
+
+  @media ${bp.md} {
+    transition: none;
+  }
 `;
 
 export const Description = styled.p`
@@ -123,10 +173,33 @@ export const Description = styled.p`
   margin: 1rem 0 2rem;
 
   transition: 0.5s 0.45s;
+
+  @media ${bp.xs} {
+    margin: 0.2rem 0 1.5rem;
+
+    transition: none;
+  }
+
+  @media ${bp.md} {
+    margin: 0.5rem 0 2rem;
+
+    transition: none;
+  }
 `;
 
 export const ButtonGroup = styled.div`
   transition: 0.5s 0.6s;
+
+  @media ${bp.xs} {
+    display: flex;
+    justify-content: center;
+
+    transition: none;
+  }
+
+  @media ${bp.md} {
+    transition: none;
+  }
 `;
 
 export const Button = styled.button`
@@ -159,6 +232,10 @@ export const Button = styled.button`
       type === 'trailer' && '0 0 5px var(--color-primary)'};
 
     filter: ${({ type }) => type !== 'trailer' && 'brightness(1.2)'};
+  }
+
+  @media ${bp.xs} {
+    margin: 0 0.5rem;
   }
 `;
 
@@ -201,6 +278,18 @@ export const Indicator = styled.ul`
 
       padding: 0.3rem;
     }
+  }
+
+  @media ${bp.xs} {
+    bottom: -4rem;
+    left: 0;
+    right: 0;
+
+    justify-content: center;
+  }
+
+  @media ${bp.md} {
+    bottom: 2rem;
   }
 `;
 

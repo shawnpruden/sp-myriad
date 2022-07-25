@@ -8,7 +8,11 @@ import SliderItem from './SliderItem';
 
 import tmdb, { timeWindow } from '../../apis/tmdb';
 
-const shuffle = (arr, num) => arr.sort(() => 0.5 - Math.random()).slice(0, num);
+const shuffle = (arr, num) =>
+  arr
+    .filter((item) => item.poster_path)
+    .sort(() => 0.5 - Math.random())
+    .slice(0, num);
 
 export default function Slider() {
   const [trends, setTrends] = useState([]);

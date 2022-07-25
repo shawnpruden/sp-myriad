@@ -20,7 +20,7 @@ import {
   Wrapper,
 } from './styles';
 
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../hooks';
 
 const formType = {
   signIn: { title: 'Sign In', state: 'signIn' },

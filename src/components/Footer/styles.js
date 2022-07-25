@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { bp } from '../../mobile';
 
 export const Container = styled.footer`
   position: relative;
@@ -8,6 +9,14 @@ export const Container = styled.footer`
 
   background-color: #000;
   padding: 5rem;
+
+  @media ${bp.xs} {
+    padding: 1.5rem;
+  }
+
+  @media ${bp.md} {
+    padding: 2rem;
+  }
 `;
 
 export const Button = styled.div`
@@ -35,6 +44,12 @@ export const Button = styled.div`
     font-size: 2.5rem;
   }
 
+  @media ${bp.xs}, ${bp.md} {
+    svg {
+      font-size: 2rem;
+    }
+  }
+
   @keyframes float {
     0% {
       transform: translateY(-5px);
@@ -54,6 +69,16 @@ export const Wrapper = styled.div`
   display: flex;
 
   width: 100%;
+
+  @media ${bp.xs} {
+    flex-direction: column;
+
+    margin-top: 2rem;
+  }
+
+  @media ${bp.md} {
+    margin-top: 2rem;
+  }
 `;
 
 export const Left = styled.div`
@@ -63,6 +88,13 @@ export const Left = styled.div`
   align-items: center;
 
   border-right: 1px solid #ffffff80;
+
+  @media ${bp.xs} {
+    border-right: none;
+    border-bottom: 1px solid #ffffff80;
+
+    justify-content: space-around;
+  }
 `;
 
 export const Menu = styled.ul`
@@ -81,6 +113,25 @@ export const Menu = styled.ul`
       opacity: 1;
     }
   }
+
+  @media ${bp.xs} {
+    flex: 1;
+
+    margin-right: 0;
+    text-align: center;
+
+    li {
+      font-size: 0.7rem;
+    }
+  }
+
+  @media ${bp.md} {
+    margin-right: 2rem;
+
+    li {
+      font-size: 0.8rem;
+    }
+  }
 `;
 
 export const Right = styled.div`
@@ -93,6 +144,20 @@ export const Right = styled.div`
   p {
     opacity: 0.5;
     margin-bottom: 0.2rem;
+  }
+
+  @media ${bp.xs} {
+    font-size: 0.7rem;
+  }
+
+  @media ${bp.md} {
+    font-size: 0.8rem;
+
+    justify-content: space-evenly;
+
+    p {
+      padding: 0 1rem;
+    }
   }
 `;
 
@@ -110,5 +175,9 @@ export const Icons = styled.div`
     &:hover {
       opacity: 1;
     }
+  }
+
+  @media ${bp.xs} {
+    margin: 1rem 0 0.5rem;
   }
 `;

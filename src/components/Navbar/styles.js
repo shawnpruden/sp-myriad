@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { bp } from '../../mobile';
 
 export const Container = styled.nav`
   position: fixed;
@@ -18,10 +19,24 @@ export const Container = styled.nav`
   &:hover {
     background-color: rgba(0, 0, 0, 1);
   }
+
+  @media ${bp.xs} {
+    padding: 0 1rem;
+    height: 40px;
+
+    background-color: #000;
+  }
+
+  @media ${bp.md} {
+    padding: 0 2rem;
+
+    background-color: #000;
+  }
 `;
 
 export const Left = styled.div`
   display: flex;
+  align-items: center;
 
   height: 100%;
 `;
@@ -34,12 +49,20 @@ export const Logo = styled.h1`
   text-transform: uppercase;
 
   user-select: none;
+
+  @media ${bp.xs} {
+    font-size: 1.5rem;
+  }
 `;
 
 export const NavItems = styled.ul`
   display: flex;
 
   margin-left: 1.5rem;
+
+  @media ${bp.xs}, ${bp.md} {
+    margin-left: 1rem;
+  }
 `;
 
 export const NavItem = styled.li`
@@ -65,6 +88,23 @@ export const NavItem = styled.li`
       --d: 100%;
     }
   }
+
+  @media ${bp.xs} {
+    & > span {
+      margin: 0 0.5rem;
+
+      font-size: 0.8rem;
+      color: var(--color-gray);
+    }
+  }
+
+  @media ${bp.md} {
+    & > span {
+      margin: 0 0.5rem;
+
+      color: var(--color-gray);
+    }
+  }
 `;
 
 export const Center = styled.div`
@@ -72,6 +112,20 @@ export const Center = styled.div`
   align-items: center;
 
   height: 100%;
+
+  @media ${bp.xs} {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+
+    justify-content: center;
+
+    width: 100vw;
+    height: 56px;
+
+    background-color: #000;
+  }
 `;
 
 export const SearchBar = styled.form`
@@ -100,6 +154,13 @@ export const SearchBar = styled.form`
 
     transition: 0.5s;
   }
+
+  @media ${bp.xs} {
+    width: 80%;
+    z-index: 5;
+
+    justify-content: space-between;
+  }
 `;
 
 export const Input = styled.input`
@@ -121,10 +182,37 @@ export const Input = styled.input`
   &::-webkit-search-results-decoration {
     -webkit-appearance: none;
   }
+
+  @media ${bp.xs} {
+    width: 100%;
+  }
 `;
 
 export const Right = styled.div`
   display: flex;
+  align-items: center;
+
+  & > div {
+    width: 120px;
+  }
+
+  @media ${bp.xs} {
+    justify-content: flex-end;
+
+    & > div {
+      width: 20px;
+
+      margin-left: 0.5rem;
+    }
+  }
+
+  @media ${bp.md} {
+    & > div {
+      width: 100px;
+
+      margin-left: 0.5rem;
+    }
+  }
 `;
 
 export const Button = styled.button`
@@ -150,7 +238,35 @@ export const Button = styled.button`
   }
 
   svg {
-    margin-right: 0.5rem;
+    font-size: 24px;
+
+    margin-right: ${({ type }) => (type === 'watchlist' ? '0.2rem' : '0.5rem')};
+  }
+
+  @media ${bp.xs} {
+    padding: 0;
+
+    span {
+      display: none;
+    }
+
+    svg {
+      font-size: 20px;
+
+      margin: 0;
+    }
+  }
+
+  @media ${bp.md} {
+    padding: 0;
+
+    span {
+      display: ${({ type }) => type === 'watchlist' && 'none'};
+    }
+
+    svg {
+      margin: ${({ type }) => type === 'watchlist' && 0};
+    }
   }
 `;
 
@@ -176,6 +292,32 @@ export const Menu = styled.div`
     height: 45vh;
 
     background-color: #000;
+  }
+
+  @media ${bp.xs} {
+    position: fixed;
+    top: 40px;
+    left: 0;
+
+    width: 100vw;
+    height: 45vh;
+    padding: 1.5rem 3rem;
+
+    &::before {
+      top: ${({ type }) => (type === 'search' ? '56px' : '40px')};
+
+      height: 50vh;
+    }
+  }
+
+  @media ${bp.md} {
+    width: 40vw;
+    height: 35vh;
+    padding: ${({ type }) => (type === 'search' ? '1rem 0' : '2rem 0 1rem')};
+
+    &::before {
+      height: 40vh;
+    }
   }
 `;
 
@@ -220,8 +362,13 @@ export const inactive = {
 };
 
 export const centralized = {
-  width: 120,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+};
+
+export const xsIcon = {
+  fontSize: '20px',
+  marginRight: '1rem',
+  color: 'var(--color-gray)',
 };

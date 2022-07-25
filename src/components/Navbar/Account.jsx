@@ -6,7 +6,7 @@ import { IoExitOutline } from 'react-icons/io5';
 
 import { Button } from './styles';
 
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../hooks';
 
 export default function Account() {
   const { user, handleSignOut } = useAuth();
@@ -15,14 +15,14 @@ export default function Account() {
     <>
       {user ? (
         <Button onClick={handleSignOut}>
-          <IoExitOutline fontSize={24} />
-          Log Out
+          <IoExitOutline />
+          <span>Log Out</span>
         </Button>
       ) : (
         <Link to="/login">
           <Button>
-            <BsPersonCircle fontSize={24} />
-            Log In
+            <BsPersonCircle />
+            <span>Log In</span>
           </Button>
         </Link>
       )}

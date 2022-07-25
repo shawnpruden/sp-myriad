@@ -4,7 +4,7 @@ import { CastsGrid, GridItem, Subtitle } from './styles';
 
 import noImage from '../../assets/img-not-available.png';
 
-import { useUpdate } from '../../hooks/useUpdate';
+import { useUpdate } from '../../hooks';
 
 export default function Casts({ casts }) {
   const update = useUpdate();

@@ -24,7 +24,7 @@ import Casts from './Casts';
 import Trailers from './Trailers';
 import { List } from '../../components';
 
-import { useUpdate } from '../../hooks/useUpdate';
+import { useUpdate } from '../../hooks';
 
 const catalog = [
   { title: 'About', id: 'about' },

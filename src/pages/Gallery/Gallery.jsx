@@ -15,7 +15,7 @@ import { firstRender, secondRender, thirdRender } from '../Home';
 
 import Card from '../../components/Card/Card';
 
-import { useList } from '../../hooks/useList';
+import { useList } from '../../hooks';
 
 const reduce = (arr) => {
   return arr.reduce((result, curObj) => {
@@ -233,16 +233,6 @@ export default function Gallery() {
     page,
     { totalPage }
   );
-
-  const reducedItems = items.reduce((result, curObj) => {
-    if (!result.some((prevObj) => prevObj.id === curObj.id)) {
-      result.push(curObj);
-    }
-
-    return result.filter((item) => item.poster_path);
-  }, []);
-
-  console.log({ reducedItems });
 
   console.log(data.title);
 
