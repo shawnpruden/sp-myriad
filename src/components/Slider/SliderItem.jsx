@@ -45,16 +45,9 @@ export default function SliderItem({
       console.log(results);
 
       if (results.length) {
-        !xs &&
-          setVideoSrc(
-            `https://www.youtube.com/embed/${results[0].key}?autoplay=1&rel=0`
-          );
-
-        xs &&
-          window.open(
-            `https://www.youtube.com/watch?v=${results[0].key}`,
-            '_blank'
-          );
+        setVideoSrc(
+          `https://www.youtube.com/embed/${results[0].key}?autoplay=1&rel=0`
+        );
       } else {
         setIsAvailable(false);
       }
@@ -64,11 +57,9 @@ export default function SliderItem({
   };
 
   const handleTrailer = () => {
+    setIsActive(true);
     !videoSrc.length && handleFetchVideos(trend.media_type, trend.id);
 
-    if (xs) return;
-
-    setIsActive(true);
     clearInterval(intervalId);
   };
 
