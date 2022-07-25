@@ -202,10 +202,9 @@ export default function Login() {
           )}
 
           <Input
+            as="button"
             type="submit"
-            value={isLoading ? ' ' : 'CONTINUE'}
             formNoValidate
-            disabled={!isValid}
             style={
               isValid
                 ? {
@@ -221,7 +220,9 @@ export default function Login() {
                     opacity: 0.6,
                   }
             }
-          />
+          >
+            {isLoading ? <>&nbsp;</> : 'CONTINUE'}
+          </Input>
         </Form>
 
         {type.state === formType.signIn.state && (
