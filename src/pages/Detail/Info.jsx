@@ -44,7 +44,7 @@ export default function Info({ item, type }) {
       </Header>
 
       <InfoGroup>
-        <Networks isAvailable={!!item.networks?.length}>
+        <Networks>
           {item.networks?.map(({ id, logo_path, name }) => (
             <Logo key={id}>
               {logo_path ? (
@@ -139,7 +139,7 @@ export default function Info({ item, type }) {
 
       <Button onClick={(e) => handleList(e)} style={isAdded ? grayed : {}}>
         {isLoading ? (
-          <Loader size={20} color="var(--color-primary)" width={2} />
+          <Loader size={20} color="var(--color-white)" width={2} />
         ) : (
           <>{isAdded ? 'Added to Watchlist' : 'Add to Watchlist'}</>
         )}

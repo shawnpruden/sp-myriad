@@ -228,7 +228,7 @@ export const Button = styled.button`
   font-size: 1rem;
 
   border: none;
-  border-radius: 5px;
+
   background-color: transparent;
 
   cursor: pointer;

@@ -228,7 +228,7 @@ export const InfoGroup = styled.div`
   display: flex;
   align-items: center;
 
-  margin: 0.5rem 0;
+  margin: 0.2rem 0 0.5rem;
 
   @media ${bp.xs}, ${bp.md} {
     flex-direction: column;
@@ -239,10 +239,6 @@ export const InfoGroup = styled.div`
 export const Networks = styled.ul`
   display: flex;
   align-items: center;
-
-  @media ${bp.xs}, ${bp.md} {
-    margin-bottom: ${({ isAvailable }) => isAvailable && '0.5rem'};
-  }
 `;
 
 export const Logo = styled.li`
@@ -255,6 +251,10 @@ export const Logo = styled.li`
     border-radius: 3px;
 
     background-color: var(--color-white);
+  }
+
+  @media ${bp.xs}, ${bp.md} {
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -279,7 +279,6 @@ export const Genres = styled.ul`
 
     color: var(--color-white);
     border: 1px solid var(--color-white);
-    border-radius: 5px;
   }
 `;
 
@@ -292,17 +291,20 @@ export const Button = styled.button`
   height: 40px;
   margin-top: 1rem;
 
-  color: var(--color-primary);
+  color: var(--color-white);
+  opacity: 0.8;
 
-  border: 1px solid var(--color-primary);
-  background-color: transparent;
+  border: none;
+  background-color: var(--color-primary);
 
   cursor: pointer;
 
-  opacity: 0.8;
-
   transition: 0.5s;
   &:hover {
+    opacity: 1;
+  }
+
+  @media ${bp.xs}, ${bp.md} {
     opacity: 1;
   }
 `;
@@ -453,6 +455,6 @@ export const Divider = styled.hr`
 `;
 
 export const grayed = {
-  color: 'var(--color-gray)',
-  border: '1px solid var(--color-gray)',
+  color: 'var(--color-black)',
+  backgroundColor: 'var(--color-gray)',
 };

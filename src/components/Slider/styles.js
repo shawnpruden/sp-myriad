@@ -51,6 +51,8 @@ export const Container = styled.header`
     }
 
     &::after {
+      bottom: -2px;
+
       height: 60vh;
     }
   }
