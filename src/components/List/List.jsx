@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -63,6 +63,8 @@ export default function List({ title, path, type, dataType, id }) {
     fetchData();
   }, [type, id, dataType]);
 
+  const listItems = useMemo(() => reduce(items), [items]);
+
   return (
     <Container>
       {title && (
@@ -88,7 +90,7 @@ export default function List({ title, path, type, dataType, id }) {
           slidesPerView={'auto'}
           slidesPerGroup={5}
         >
-          {reduce(items)?.map((item) => (
+          {listItems?.map((item) => (
             <SwiperSlide key={item.id}>
               <Card item={item} type={type === 'similar' ? dataType : type} />
             </SwiperSlide>
