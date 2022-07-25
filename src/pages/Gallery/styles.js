@@ -92,7 +92,13 @@ export const Grid = styled.div`
   gap: 1rem;
 
   @media ${bp.xs} {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem 0.5rem;
+  }
+
+  @media ${bp.md} {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem 1rem;
   }
 `;
 
