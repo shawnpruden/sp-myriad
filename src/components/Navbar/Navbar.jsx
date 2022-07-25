@@ -57,11 +57,13 @@ export default function Navbar() {
   const { xs, lg } = useMedia();
 
   useEffect(() => {
+    xs && setIsHidden(true);
+
     setKeywords([]);
     setText('');
     setTerm('');
     setIsActive(false);
-  }, [pathname]);
+  }, [pathname, xs]);
 
   useEffect(() => {
     term ? setIsActive(true) : setIsActive(false);
