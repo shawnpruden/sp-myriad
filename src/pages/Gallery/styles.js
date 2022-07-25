@@ -123,4 +123,8 @@ export const Button = styled.button`
   @media ${bp.xs} {
     margin: 1.5rem auto 0;
   }
+
+  @media ${bp.xs}, ${bp.md} {
+    transition: none;
+  }
 `;

@@ -51,7 +51,7 @@ export const Container = styled.header`
     }
 
     &::after {
-      height: 50vh;
+      height: 60vh;
     }
   }
 `;
