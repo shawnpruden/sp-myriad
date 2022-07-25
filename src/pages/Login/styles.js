@@ -166,6 +166,20 @@ export const Divider = styled.p`
     left: 100%;
     margin-left: 1rem;
   }
+
+  @media ${bp.xs} {
+    span::before,
+    span::after {
+      width: 8rem;
+    }
+  }
+
+  @media ${bp.md} {
+    span::before,
+    span::after {
+      width: 12rem;
+    }
+  }
 `;
 
 export const Option = styled.p`
