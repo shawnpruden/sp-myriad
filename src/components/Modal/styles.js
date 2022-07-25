@@ -67,7 +67,7 @@ export const Content = styled.div`
     padding-top: 20%;
   }
 
-  @media ${bp.xs} {
+  @media ${bp.xs}, ${bp.md} {
     --w: 90vw;
   }
 `;
