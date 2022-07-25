@@ -4,7 +4,7 @@ import { FaStar } from 'react-icons/fa';
 
 import {
   Button,
-  Genre,
+  Genres,
   grayed,
   Header,
   InfoContent,
@@ -129,9 +129,11 @@ export default function Info({ item, type }) {
         </Note>
       )}
 
-      {item.genres?.map(({ id, name }) => (
-        <Genre key={id}>{name}</Genre>
-      ))}
+      <Genres>
+        {item.genres?.map(({ id, name }) => (
+          <li key={id}>{name}</li>
+        ))}
+      </Genres>
 
       {item.overview && <p>{item.overview}</p>}
 

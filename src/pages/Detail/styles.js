@@ -268,15 +268,19 @@ export const Note = styled.p`
   color: var(--color-primary);
 `;
 
-export const Genre = styled.span`
-  display: inline-block;
+export const Genres = styled.ul`
+  margin: 0.5rem 0;
 
-  padding: 0.2rem 0.4rem;
-  margin: 0.5rem 0.5rem 1rem 0;
+  li {
+    display: inline-block;
 
-  color: var(--color-white);
-  border: 1px solid var(--color-white);
-  border-radius: 5px;
+    padding: 0.2rem 0.4rem;
+    margin: 0 0.5rem 0.5rem 0;
+
+    color: var(--color-white);
+    border: 1px solid var(--color-white);
+    border-radius: 5px;
+  }
 `;
 
 export const Button = styled.button`
