@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
 import { Button, Container, Grid, Header, Title } from './styles';
@@ -9,8 +9,8 @@ import tmdb, {
   timeWindow,
   tvType,
 } from '../../apis/tmdb';
-
 import header from '../../assets/header.jpeg';
+
 import { firstRender, secondRender, thirdRender } from '../Home';
 
 import Card from '../../components/Card/Card';
@@ -43,8 +43,6 @@ export default function Gallery() {
     window.scrollTo(0, 0);
   }, [type, term]);
 
-  const genreTitle = genre?.split('-').join(' ').replace('and', '&');
-
   const fetchData = useCallback(
     async (option) => {
       try {
@@ -63,7 +61,7 @@ export default function Gallery() {
 
               genre
                 ? setData({
-                    title: genreTitle,
+                    title: genre.split('-').join(' ').replace('and', '&'),
                     path: mediaType.movie,
                   })
                 : setData({ title: 'Movies', path: mediaType.movie });
@@ -77,7 +75,7 @@ export default function Gallery() {
 
               genre
                 ? setData({
-                    title: genreTitle,
+                    title: genre.split('-').join(' ').replace('and', '&'),
                     path: mediaType.tv,
                   })
                 : setData({ title: 'TV Series', path: mediaType.tv });
@@ -236,6 +234,8 @@ export default function Gallery() {
 
   console.log(data.title);
 
+  const gridItems = useMemo(() => reduce(items), [items]);
+
   return (
     <>
       <Header>
@@ -246,7 +246,7 @@ export default function Gallery() {
         <Title type={type}>{data.title}</Title>
 
         <Grid>
-          {reduce(items)?.map((item) => (
+          {gridItems?.map((item) => (
             <Card key={item.id} item={item} type={data.path} />
           ))}
         </Grid>

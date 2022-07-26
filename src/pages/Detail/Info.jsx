@@ -28,6 +28,8 @@ export default function Info({ item, type }) {
 
   const update = useUpdate();
 
+  const runtime = convert(item.runtime);
+
   return (
     <InfoWrapper id="overview">
       <Header>
@@ -35,55 +37,60 @@ export default function Info({ item, type }) {
           {item.title || item.original_title || item.name || item.original_name}
         </Title>
 
-        {item.vote_average ? (
+        {!!item.vote_average && (
           <Rate>
             <FaStar />
             {Math.round(item.vote_average * 10) / 10}
           </Rate>
-        ) : null}
+        )}
       </Header>
 
       <InfoGroup>
-        <Networks>
-          {item.networks?.map(({ id, logo_path, name }) => (
-            <Logo key={id}>
-              {logo_path ? (
+        {!!item.networks?.length && (
+          <Networks>
+            {item.networks.map(({ id, logo_path, name }) => (
+              <Logo key={id}>
                 <img
                   src={`https://image.tmdb.org/t/p/w500${logo_path}?${Date.now()}`}
                   alt={name}
                   onError={logo_path && update}
                 />
-              ) : null}
-            </Logo>
-          ))}
-        </Networks>
+              </Logo>
+            ))}
+          </Networks>
+        )}
 
         <InfoContent>
-          {(item.release_date || item.first_air_date) && (
+          {!!(item.release_date || item.first_air_date) && (
             <span>
               {new Date(item.release_date || item.first_air_date).getFullYear()}
+              <span> · </span>
             </span>
           )}
 
-          {!!item.runtime && <span> · {convert(item.runtime)}</span>}
-
-          {item.number_of_seasons && (
+          {!!item.runtime && (
             <span>
+              {runtime}
               <span> · </span>
+            </span>
+          )}
+
+          {!!item.number_of_seasons && (
+            <span>
               {item.number_of_seasons === 1
                 ? `${item.number_of_seasons} SEASON`
                 : `${item.number_of_seasons} SEASONS`}
+              <span> · </span>
             </span>
           )}
 
-          {item.spoken_languages?.length ? (
+          {!!item.spoken_languages?.length && (
             <span>
-              <span> · </span>
               {item.spoken_languages
                 .map((language) => language.iso_639_1)
                 .join(', ')}
             </span>
-          ) : null}
+          )}
         </InfoContent>
       </InfoGroup>
 
@@ -129,11 +136,13 @@ export default function Info({ item, type }) {
         </Note>
       )}
 
-      <Genres>
-        {item.genres?.map(({ id, name }) => (
-          <li key={id}>{name}</li>
-        ))}
-      </Genres>
+      {!!item.genres?.length && (
+        <Genres>
+          {item.genres.map(({ id, name }) => (
+            <li key={id}>{name}</li>
+          ))}
+        </Genres>
+      )}
 
       {item.overview && <p>{item.overview}</p>}
 

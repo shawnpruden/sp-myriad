@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { FaStar } from 'react-icons/fa';
@@ -21,8 +21,8 @@ import {
 import { Loader } from '../Loader';
 
 import { mediaType } from '../../apis/tmdb';
-import noImage from '../../assets/img-not-available.png';
 import { movieGenres, tvGenres } from '../../apis/genres';
+import noImage from '../../assets/img-not-available.png';
 
 import { useList, useUpdate } from '../../hooks';
 
@@ -37,6 +37,8 @@ const createGenres = (ids) => {
   return [...new Set(genres.map((genre) => genre.name))].join(' · ');
 };
 
+const modify = (num) => Math.round(num * 10) / 10;
+
 export default function Card({ item, type }) {
   const [isVisible, setIsVisible] = useState(false);
   const update = useUpdate();
@@ -44,6 +46,10 @@ export default function Card({ item, type }) {
   const { isAdded, isLoading, handleList } = useList(item, type);
 
   const navigate = useNavigate();
+
+  const genres = useMemo(() => createGenres(item.genre_ids), [item.genre_ids]);
+  const overview = useMemo(() => truncate(item.overview, 100), [item.overview]);
+  const vote = useMemo(() => modify(item.vote_average), [item.vote_average]);
 
   return (
     <Container
@@ -80,12 +86,12 @@ export default function Card({ item, type }) {
               onError={item.backdrop_path && update}
             />
 
-            {item.vote_average ? (
+            {!!item.vote_average && (
               <Rate>
                 <FaStar />
-                {Math.round(item.vote_average * 10) / 10}
+                {vote}
               </Rate>
-            ) : null}
+            )}
           </Thumbnail>
         ) : (
           <img
@@ -104,15 +110,18 @@ export default function Card({ item, type }) {
           </Title>
 
           <Info>
-            <span>
-              {new Date(item.release_date || item.first_air_date).getFullYear()}
-            </span>
+            {!!(item.release_date || item.first_air_date) && (
+              <span>
+                {new Date(
+                  item.release_date || item.first_air_date
+                ).getFullYear()}
+                <span> | </span>
+              </span>
+            )}
 
-            {item.genre_ids?.length ? <span> | </span> : null}
+            {!!item.genre_ids?.length && <span>{genres}</span>}
 
-            <span>{createGenres(item.genre_ids)}</span>
-
-            <p>{truncate(item.overview, 100)}</p>
+            {item.overview && <p>{overview}</p>}
           </Info>
 
           <div style={spaced}>
