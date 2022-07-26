@@ -65,7 +65,7 @@ export default function Info({ item, type }) {
             </span>
           )}
 
-          {item.runtime && <span> · {convert(item.runtime)}</span>}
+          {!!item.runtime && <span> · {convert(item.runtime)}</span>}
 
           {item.number_of_seasons && (
             <span>
