@@ -287,10 +287,14 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
 
-  width: 135px;
+  width: 110px;
   height: 40px;
   margin-top: 1rem;
 
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   color: var(--color-white);
   opacity: 0.8;
 
@@ -302,6 +306,12 @@ export const Button = styled.button`
   transition: 0.5s;
   &:hover {
     opacity: 1;
+  }
+
+  svg {
+    font-size: 24px;
+
+    margin-right: 0.4rem;
   }
 
   @media ${bp.xs}, ${bp.md} {

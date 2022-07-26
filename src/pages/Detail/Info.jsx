@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { FaStar } from 'react-icons/fa';
+import { MdPlaylistAddCheck, MdPlaylistAdd } from 'react-icons/md';
 
 import {
   Button,
@@ -150,7 +151,17 @@ export default function Info({ item, type }) {
         {isLoading ? (
           <Loader size={20} color="var(--color-white)" width={2} />
         ) : (
-          <>{isAdded ? 'Added to Watchlist' : 'Add to Watchlist'}</>
+          <>
+            {isAdded ? (
+              <>
+                <MdPlaylistAddCheck /> Added
+              </>
+            ) : (
+              <>
+                <MdPlaylistAdd /> Add
+              </>
+            )}
+          </>
         )}
       </Button>
     </InfoWrapper>
