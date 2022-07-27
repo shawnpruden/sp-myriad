@@ -17,7 +17,7 @@ import {
 
 import Modal from '../Modal/Modal';
 
-import { useMedia } from '../../hooks';
+import { useMedia, useUpdate } from '../../hooks';
 
 import tmdb from '../../apis/tmdb';
 
@@ -38,6 +38,7 @@ export default function SliderItem({
   const navigate = useNavigate();
 
   const { xs } = useMedia();
+  const update = useUpdate();
 
   const handleFetchVideos = async (type, id) => {
     try {
@@ -84,8 +85,12 @@ export default function SliderItem({
       <Banner
         src={
           xs
-            ? `https://image.tmdb.org/t/p/w500${trend.poster_path}`
-            : `https://image.tmdb.org/t/p/original${trend.backdrop_path}`
+            ? `https://image.tmdb.org/t/p/w500${
+                trend.poster_path
+              }?${Date.now()}`
+            : `https://image.tmdb.org/t/p/original${
+                trend.backdrop_path
+              }?${Date.now()}`
         }
         alt={
           trend.title ||
@@ -94,6 +99,7 @@ export default function SliderItem({
           trend.original_name
         }
         style={isMatched ? active : inactive}
+        onError={(trend.backdrop_path || trend.poster_path) && update}
       />
 
       <Content style={isMatched ? active : inactive}>

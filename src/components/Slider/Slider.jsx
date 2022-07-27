@@ -10,7 +10,7 @@ import tmdb, { timeWindow } from '../../apis/tmdb';
 
 const shuffle = (arr, num) =>
   arr
-    .filter((item) => item.poster_path)
+    .filter((item) => item.backdrop_path && item.poster_path)
     .sort(() => 0.5 - Math.random())
     .slice(0, num);
 
