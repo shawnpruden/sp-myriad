@@ -5,7 +5,7 @@ export const Container = styled.header`
   position: relative;
 
   width: 100vw;
-  height: 100vh;
+  height: 96vh;
 
   &::before {
     content: '';
@@ -245,7 +245,7 @@ export const Indicator = styled.ul`
   position: absolute;
   z-index: 10;
   bottom: 5rem;
-  right: 2rem;
+  right: 2.5rem;
 
   display: inline-flex;
 

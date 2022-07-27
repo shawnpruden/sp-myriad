@@ -21,7 +21,7 @@ export default function NavMenu({ data, path, isActive, type }) {
               to={
                 type === 'search'
                   ? `/${mediaType.all}/search/${name.toLowerCase()}`
-                  : `${path}/${name
+                  : `${path}/genres/${name
                       .replace(/&/g, 'and')
                       .replace(/\s+/g, '-')
                       .toLowerCase()}/${id}`

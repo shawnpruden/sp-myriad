@@ -77,6 +77,8 @@ export default function Detail() {
     fetchData();
   }, [id, type]);
 
+  const listData = { type: 'similar', dataType: type, id: id };
+
   return (
     <Container>
       <Left>
@@ -155,7 +157,7 @@ export default function Detail() {
           <section id="more">
             <Subtitle>More Like This</Subtitle>
 
-            <List type="similar" dataType={type} id={id} />
+            <List listData={listData} />
           </section>
         </Content>
       </Right>

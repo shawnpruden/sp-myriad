@@ -23,8 +23,10 @@ export default function App() {
 
         <Route path="/:type" element={<Gallery />} />
         <Route path="/:type/:id" element={<Detail />} />
+        <Route path="/:type/genres/:genre/:id" element={<Gallery />} />
+        <Route path="/:type/:networks/:id" element={<Gallery />} />
+
         <Route path="/:type/search/:term" element={<Gallery />} />
-        <Route path="/:type/:genre/:id" element={<Gallery />} />
 
         <Route path="/watchlist" element={<Gallery />} />
         <Route path="/login" element={<Login />} />

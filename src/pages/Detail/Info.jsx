@@ -31,6 +31,22 @@ export default function Info({ item, type }) {
 
   const runtime = convert(item.runtime);
 
+  const info = [
+    !!(item.release_date || item.first_air_date) &&
+      new Date(item.release_date || item.first_air_date).getFullYear(),
+
+    !!item.runtime && runtime,
+
+    !!item.number_of_seasons &&
+      (item.number_of_seasons === 1
+        ? `${item.number_of_seasons} SEASON`
+        : `${item.number_of_seasons} SEASONS`),
+  ]
+    .filter((data) => !!data)
+    .join(' · ');
+
+  console.log(info);
+
   return (
     <InfoWrapper id="overview">
       <Header>
@@ -62,31 +78,11 @@ export default function Info({ item, type }) {
         )}
 
         <InfoContent>
-          {!!(item.release_date || item.first_air_date) && (
-            <span>
-              {new Date(item.release_date || item.first_air_date).getFullYear()}
-              <span> · </span>
-            </span>
-          )}
-
-          {!!item.runtime && (
-            <span>
-              {runtime}
-              <span> · </span>
-            </span>
-          )}
-
-          {!!item.number_of_seasons && (
-            <span>
-              {item.number_of_seasons === 1
-                ? `${item.number_of_seasons} SEASON`
-                : `${item.number_of_seasons} SEASONS`}
-              <span> · </span>
-            </span>
-          )}
+          <span>{info}</span>
 
           {!!item.spoken_languages?.length && (
             <span>
+              <span> · </span>
               {item.spoken_languages
                 .map((language) => language.iso_639_1)
                 .join(', ')}

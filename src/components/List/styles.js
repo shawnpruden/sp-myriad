@@ -116,25 +116,22 @@ export const Wrapper = styled.div`
     opacity: 0;
   }
 
-  @media ${bp.xs} {
-    .swiper-slide {
-      width: 30%;
-    }
-
+  @media ${bp.xs}, ${bp.md} {
     .swiper-button-next,
     .swiper-button-prev {
       display: none;
     }
   }
 
+  @media ${bp.xs} {
+    .swiper-slide {
+      width: 30%;
+    }
+  }
+
   @media ${bp.md} {
     .swiper-slide {
       width: 22%;
-    }
-
-    .swiper-button-next::after,
-    .swiper-button-prev::after {
-      font-size: 2rem;
     }
   }
 `;

@@ -11,7 +11,7 @@ import tmdb, {
 } from '../../apis/tmdb';
 import header from '../../assets/header.jpeg';
 
-import { firstRender, secondRender, thirdRender } from '../Home';
+import { firstRender, secondRender, thirdRender } from '../data';
 
 import Card from '../../components/Card/Card';
 
@@ -34,7 +34,7 @@ export default function Gallery() {
 
   const [data, setData] = useState({});
 
-  const { type, term, genre, id } = useParams();
+  const { type, term, genre, networks, id } = useParams();
   const { pathname } = useLocation();
 
   const { list } = useList();
@@ -79,6 +79,18 @@ export default function Gallery() {
                     path: mediaType.tv,
                   })
                 : setData({ title: 'TV Series', path: mediaType.tv });
+
+              break;
+
+            case 'networks':
+              response = await tmdb.getTvWithNetworks(id, {
+                params,
+              });
+
+              setData({
+                title: networks.split('-').join(' '),
+                path: mediaType.tv,
+              });
 
               break;
 
@@ -174,7 +186,9 @@ export default function Gallery() {
 
           response = await tmdb.search({ params });
 
-          const title = response.results.length
+          const title = response.results.some((result) =>
+            result.hasOwnProperty('poster_path')
+          )
             ? `Results for "${term}"`
             : 'No results found';
 
@@ -229,7 +243,10 @@ export default function Gallery() {
     '\n',
     items,
     page,
-    { totalPage }
+    { totalPage },
+    { type },
+    { networks },
+    { genre }
   );
 
   console.log(data.title);

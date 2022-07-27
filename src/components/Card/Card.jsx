@@ -115,7 +115,7 @@ export default function Card({ item, type }) {
                 {new Date(
                   item.release_date || item.first_air_date
                 ).getFullYear()}
-                <span> | </span>
+                {!!item.genre_ids?.length && <span> | </span>}
               </span>
             )}
 

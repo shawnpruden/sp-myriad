@@ -1,103 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import { Slider, List } from '../components';
+import styled from 'styled-components';
+import { bp } from '../mobile';
 
-import { mediaType, movieType, timeWindow, tvType } from '../apis/tmdb';
+import { Slider, List, Row } from '../components';
+import { firstRender, networks, secondRender, thirdRender } from './data';
 import { useMedia } from '../hooks';
 
-const lgContainer = { padding: '5rem 2rem 5rem 8rem', overflowX: 'hidden' };
+export const Wrapper = styled.section`
+  padding: 2vh 2rem 2vh 8rem;
 
-const mdContainer = {
-  padding: '0 2rem',
-  margin: '1rem 0 2rem',
+  overflow-x: hidden;
 
-  overflowX: 'hidden',
-};
+  @media ${bp.xs} {
+    padding: 1vh 1rem;
+    margin-top: 8rem;
+  }
 
-const xsContainer = {
+  @media ${bp.md} {
+    padding: 1vh 2rem;
+    margin-top: 1rem;
+  }
+`;
+
+const xsWrapper = {
   padding: '0 1rem',
-  margin: '8rem 0 2rem',
+  margin: '2rem 0',
 
   overflowX: 'hidden',
 };
 
-export const firstRender = [
-  {
-    title: 'Trending Now',
-    path: 'trending',
-    type: mediaType.all,
-    dataType: timeWindow.day,
-  },
-  {
-    title: 'Top Rated Movies',
-    path: 'top-rated-movies',
-    type: mediaType.movie,
-    dataType: movieType.top_rated,
-  },
-  {
-    title: 'Top Rated TV Series',
-    path: 'top-rated-tv',
-    type: mediaType.tv,
-    dataType: tvType.top_rated,
-  },
-];
+const mdWrapper = {
+  padding: '0 2rem',
+  margin: '2rem 0',
 
-export const secondRender = [
-  {
-    title: 'Fantasy Movies',
-    path: 'fantasy-movies',
-    type: mediaType.movie,
-    dataType: 14,
-  },
-  {
-    title: 'Drama Movies',
-    path: 'drama-movies',
-    type: mediaType.movie,
-    dataType: 18,
-  },
-  {
-    title: 'Romance Movies',
-    path: 'romance-movies',
-    type: mediaType.movie,
-    dataType: 10749,
-  },
-];
+  overflowX: 'hidden',
+};
 
-export const thirdRender = [
-  {
-    title: 'Comedy TV',
-    path: 'comedy-tv',
-    type: mediaType.tv,
-    dataType: 35,
-  },
-  {
-    title: 'TV Dramas',
-    path: 'drama-tv',
-    type: mediaType.tv,
-    dataType: 18,
-  },
-  {
-    title: 'Anime',
-    path: 'anime-tv',
-    type: mediaType.tv,
-    dataType: 16,
-  },
-];
+const lgWrapper = { padding: '5rem 2rem 5rem 8rem', overflowX: 'hidden' };
 
 const listsData = [firstRender, secondRender, thirdRender];
 
-function Home() {
+export default function Home() {
   const [lists, setLists] = useState([]);
   const [counter, setCounter] = useState(0);
 
   const { xs, md } = useMedia();
 
-  const container = (() => {
-    if (xs) return xsContainer;
-    if (md) return mdContainer;
+  const wrapper = (() => {
+    if (xs) return xsWrapper;
+    if (md) return mdWrapper;
 
-    return lgContainer;
+    return lgWrapper;
   })();
 
   useEffect(() => {
@@ -107,25 +62,20 @@ function Home() {
   return (
     <>
       <Slider />
+      <Wrapper>
+        <Row rowData={networks} />
+      </Wrapper>
 
       <InfiniteScroll
         dataLength={lists.length}
         next={() => setCounter((prevState) => prevState + 1)}
         hasMore={counter < listsData.length - 1}
-        style={container}
+        style={wrapper}
       >
-        {lists.map(({ title, path, type, dataType }, index) => (
-          <List
-            key={index}
-            title={title}
-            path={path}
-            type={type}
-            dataType={dataType}
-          />
+        {lists.map((listData, index) => (
+          <List key={index} listData={listData} />
         ))}
       </InfiniteScroll>
     </>
   );
 }
-
-export default Home;

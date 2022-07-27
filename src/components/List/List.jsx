@@ -24,7 +24,9 @@ const reduce = (arr) => {
   }, []);
 };
 
-export default function List({ title, path, type, dataType, id }) {
+export default function List({
+  listData: { title, path, type, dataType, id },
+}) {
   const [items, setItems] = useState([]);
 
   const navigate = useNavigate();
@@ -33,31 +35,35 @@ export default function List({ title, path, type, dataType, id }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      let response;
+      try {
+        let response;
 
-      switch (type) {
-        case mediaType.all:
-          response = await tmdb.getTrends(dataType);
-          break;
+        switch (type) {
+          case mediaType.all:
+            response = await tmdb.getTrends(dataType);
+            break;
 
-        case mediaType.movie:
-          response = await (isNaN(dataType)
-            ? tmdb.getMovies(dataType)
-            : tmdb.getMoviesWithGenres(dataType));
-          break;
+          case mediaType.movie:
+            response = await (isNaN(dataType)
+              ? tmdb.getMovies(dataType)
+              : tmdb.getMoviesWithGenres(dataType));
+            break;
 
-        case mediaType.tv:
-          response = await (isNaN(dataType)
-            ? tmdb.getTvSeries(dataType)
-            : tmdb.getTvWithGenres(dataType));
-          break;
+          case mediaType.tv:
+            response = await (isNaN(dataType)
+              ? tmdb.getTvSeries(dataType)
+              : tmdb.getTvWithGenres(dataType));
+            break;
 
-        default:
-          response = await tmdb.getSimilar(dataType, id);
-          break;
+          default:
+            response = await tmdb.getSimilar(dataType, id);
+            break;
+        }
+
+        setItems(response.results);
+      } catch (err) {
+        console.log(err);
       }
-
-      setItems(response.results);
     };
 
     fetchData();

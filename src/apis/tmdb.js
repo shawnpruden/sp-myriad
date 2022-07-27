@@ -79,6 +79,9 @@ const tmdb = {
   getTvWithGenres: (id, params) =>
     instance.get(`/discover/tv?with_genres=${id}`, params),
 
+  getTvWithNetworks: (id, params) =>
+    instance.get(`/discover/tv?with_networks=${id}`, params),
+
   search: (params) => instance.get('/search/multi', params),
 
   getKeywords: (params) => instance.get('/search/keyword', params),

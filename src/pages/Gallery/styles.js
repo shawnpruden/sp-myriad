@@ -56,7 +56,18 @@ export const Title = styled.h3`
   font-size: 2rem;
   font-weight: 300;
   letter-spacing: 1px;
-  text-transform: ${({ type }) => type !== 'all' && 'capitalize'};
+  text-transform: ${({ type }) => {
+    switch (type) {
+      case 'all':
+        return;
+
+      case 'networks':
+        return 'uppercase';
+
+      default:
+        return 'capitalize';
+    }
+  }};
 
   margin-bottom: 2rem;
 
