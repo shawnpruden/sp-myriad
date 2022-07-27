@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 import { bp } from '../../mobile';
@@ -6,7 +7,6 @@ import { bp } from '../../mobile';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Mousewheel, Navigation } from 'swiper';
 
-import Image from './Image';
 import { useMedia } from '../../hooks';
 
 export const Container = styled.div`
@@ -82,9 +82,18 @@ export const Container = styled.div`
   }
 `;
 
+export const Image = styled.img`
+  object-fit: contain;
+  object-position: center;
+
+  aspect-ratio: 3 / 1;
+`;
+
 const shuffle = (arr) => arr.sort(() => 0.5 - Math.random());
 
 export default function Row({ rowData }) {
+  const navigate = useNavigate();
+
   const { xs } = useMedia();
 
   const rowItems = useMemo(() => shuffle(rowData), [rowData]);
@@ -100,9 +109,16 @@ export default function Row({ rowData }) {
         slidesPerView={xs ? 3 : 6}
         slidesPerGroup={6}
       >
-        {rowItems.map((item) => (
-          <SwiperSlide key={item.id}>
-            <Image item={item} />
+        {rowItems.map(({ id, name, logo }) => (
+          <SwiperSlide
+            key={id}
+            onClick={() =>
+              navigate(
+                `/networks/${name.replace(/\s+/g, '-').toLowerCase()}/${id}`
+              )
+            }
+          >
+            <Image src={logo} alt={name} />
           </SwiperSlide>
         ))}
       </Swiper>
