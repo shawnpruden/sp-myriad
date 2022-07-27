@@ -70,6 +70,7 @@ export const Container = styled.div`
     .swiper-slide {
       box-shadow: 0 0 5px var(--color-white);
 
+      transition: none;
       &:hover {
         box-shadow: 0 0 5px 2px var(--color-primary);
       }
