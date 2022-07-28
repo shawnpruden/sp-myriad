@@ -20,18 +20,7 @@ export const Container = styled.div`
     background-color: var(--color-white);
     border-radius: 5px;
 
-    box-shadow: 0 0 10px var(--color-white);
-
     cursor: pointer;
-
-    opacity: 0.8;
-
-    transition: 0.5s;
-    &:hover {
-      opacity: 1;
-
-      box-shadow: 0 0 10px 4px var(--color-primary);
-    }
   }
 
   .swiper-button-next::after,
@@ -39,18 +28,7 @@ export const Container = styled.div`
     font-size: 1.5rem;
   }
 
-  .swiper-button-next {
-    color: var(--color-white);
-    opacity: 0.8;
-
-    transition: 0.5s;
-    &:hover {
-      opacity: 1;
-    }
-
-    right: -1rem;
-  }
-
+  .swiper-button-next,
   .swiper-button-prev {
     color: var(--color-white);
     opacity: 0.8;
@@ -59,7 +37,13 @@ export const Container = styled.div`
     &:hover {
       opacity: 1;
     }
+  }
 
+  .swiper-button-next {
+    right: -1rem;
+  }
+
+  .swiper-button-prev {
     left: -7rem;
   }
 
@@ -67,14 +51,24 @@ export const Container = styled.div`
     opacity: 0;
   }
 
+  @media ${bp.lg} {
+    .swiper-slide {
+      box-shadow: 0 0 10px var(--color-white);
+
+      opacity: 0.6;
+
+      transition: 0.5s;
+      &:hover {
+        box-shadow: 0 0 10px 5px var(--color-primary);
+
+        opacity: 1;
+      }
+    }
+  }
+
   @media ${bp.xs}, ${bp.md} {
     .swiper-slide {
       box-shadow: 0 0 5px var(--color-white);
-
-      transition: none;
-      &:hover {
-        box-shadow: 0 0 5px 2px var(--color-primary);
-      }
     }
 
     .swiper-button-next,

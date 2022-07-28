@@ -88,18 +88,7 @@ export const Wrapper = styled.div`
     width: ${({ type }) => (type === 'similar' ? '25%' : '18%')};
   }
 
-  .swiper-button-next {
-    color: var(--color-white);
-    opacity: 0.8;
-
-    transition: 0.5s;
-    &:hover {
-      opacity: 1;
-    }
-
-    right: ${({ type }) => (type === 'similar' ? '-1vw' : '-1rem')};
-  }
-
+  .swiper-button-next,
   .swiper-button-prev {
     color: var(--color-white);
     opacity: 0.8;
@@ -108,8 +97,14 @@ export const Wrapper = styled.div`
     &:hover {
       opacity: 1;
     }
+  }
 
-    left: ${({ type }) => (type === 'similar' ? 0 : '-7rem')};
+  .swiper-button-next {
+    right: -1rem;
+  }
+
+  .swiper-button-prev {
+    left: ${({ type }) => (type === 'similar' ? '-1rem' : '-7rem')};
   }
 
   .swiper-button-disabled {

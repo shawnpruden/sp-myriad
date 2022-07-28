@@ -9,7 +9,7 @@ import { firstRender, networks, secondRender, thirdRender } from './data';
 import { useMedia } from '../hooks';
 
 export const Wrapper = styled.section`
-  padding: 2vh 2rem 2vh 8rem;
+  padding: 1rem 2rem 1rem 8rem;
 
   overflow-x: hidden;
 
