@@ -297,30 +297,30 @@ export const Menu = styled.div`
     background-color: #000;
   }
 
+  @media ${bp.xs}, ${bp.md} {
+    height: 300px;
+
+    &::before {
+      height: 320px;
+    }
+  }
+
   @media ${bp.xs} {
     position: fixed;
     top: 40px;
     left: 0;
 
     width: 100vw;
-    height: 45vh;
     padding: 1.5rem 3rem;
 
     &::before {
       top: ${({ type }) => (type === 'search' ? '56px' : '40px')};
-
-      height: 50vh;
     }
   }
 
   @media ${bp.md} {
     width: 40vw;
-    height: 35vh;
     padding: ${({ type }) => (type === 'search' ? '1rem 0' : '2rem 0 1rem')};
-
-    &::before {
-      height: 40vh;
-    }
   }
 `;
 
