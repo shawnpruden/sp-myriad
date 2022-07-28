@@ -41,6 +41,7 @@ export default function Navbar() {
   const [isActive, setIsActive] = useState(false); // > NavMenu-related
   const [isHidden, setIsHidden] = useState(true); // > xs
   const inputRef = useRef();
+  const centerRef = useRef();
 
   // > NavItem-related
   const [text, setText] = useState(''); // > NavMenu-related
@@ -87,9 +88,14 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleClose = (e) => {
-      if (navRef.current.contains(e.target)) return;
+      if (
+        navRef.current.contains(e.target) ||
+        centerRef.current.contains(e.target)
+      )
+        return;
 
       setText('');
+      setIsHidden(true);
     };
 
     !lg &&
@@ -150,6 +156,7 @@ export default function Navbar() {
       </Left>
 
       <Center
+        ref={centerRef}
         onMouseLeave={() => lg && setIsActive(false)}
         style={isHidden ? {} : active}
       >

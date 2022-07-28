@@ -205,7 +205,7 @@ export default function Gallery() {
     },
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [term, page, type, genre]
+    [term, page, type, genre, networks]
   );
 
   useEffect(() => {
