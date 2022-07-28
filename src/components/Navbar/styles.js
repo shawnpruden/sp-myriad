@@ -301,7 +301,7 @@ export const Menu = styled.div`
     height: 300px;
 
     &::before {
-      height: 320px;
+      height: 350px;
     }
   }
 
