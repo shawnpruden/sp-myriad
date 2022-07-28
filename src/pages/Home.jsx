@@ -9,17 +9,17 @@ import { firstRender, networks, secondRender, thirdRender } from './data';
 import { useMedia } from '../hooks';
 
 export const Wrapper = styled.section`
-  padding: 1rem 2rem 1rem 8rem;
+  padding: 1.5rem 2rem 1.5rem 8rem;
 
   overflow-x: hidden;
 
   @media ${bp.xs} {
-    padding: 1vh 1rem;
+    padding: 0.5rem 1rem;
     margin-top: 8rem;
   }
 
   @media ${bp.md} {
-    padding: 1vh 2rem;
+    padding: 0.5rem 2rem;
     margin-top: 1rem;
   }
 `;
@@ -38,7 +38,7 @@ const mdWrapper = {
   overflowX: 'hidden',
 };
 
-const lgWrapper = { padding: '5rem 2rem 5rem 8rem', overflowX: 'hidden' };
+const lgWrapper = { padding: '4rem 2rem 4rem 8rem', overflowX: 'hidden' };
 
 const listsData = [firstRender, secondRender, thirdRender];
 

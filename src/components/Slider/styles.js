@@ -5,7 +5,7 @@ export const Container = styled.header`
   position: relative;
 
   width: 100vw;
-  height: 96vh;
+  height: 95vh;
 
   &::before {
     content: '';
@@ -29,7 +29,7 @@ export const Container = styled.header`
     content: '';
     position: absolute;
     z-index: 2;
-    bottom: 0;
+    bottom: -2px;
     left: 0;
 
     width: 100vw;
@@ -51,8 +51,6 @@ export const Container = styled.header`
     }
 
     &::after {
-      bottom: -2px;
-
       height: 60vh;
     }
   }

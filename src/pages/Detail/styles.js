@@ -114,8 +114,8 @@ export const Right = styled.div`
 export const FadeEffect = styled.div`
   position: absolute;
   z-index: 2;
+  bottom: -2px;
   left: 0;
-  bottom: 0;
 
   width: 100%;
   height: 40%;
