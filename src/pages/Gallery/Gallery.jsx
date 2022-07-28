@@ -49,8 +49,6 @@ export default function Gallery() {
         let response;
 
         if (!term) {
-          console.log('fetching data..');
-
           const params = option === 'more' ? { page: page + 1 } : { page: 1 };
 
           switch (type) {

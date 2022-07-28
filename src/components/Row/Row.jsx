@@ -19,11 +19,12 @@ export const Container = styled.div`
 
     background-color: var(--color-white);
     border-radius: 5px;
+
     box-shadow: 0 0 10px var(--color-white);
 
-    opacity: 0.5;
-
     cursor: pointer;
+
+    opacity: 0.8;
 
     transition: 0.5s;
     &:hover {
@@ -69,8 +70,6 @@ export const Container = styled.div`
   @media ${bp.xs}, ${bp.md} {
     .swiper-slide {
       box-shadow: 0 0 5px var(--color-white);
-
-      opacity: 0.8;
 
       transition: none;
       &:hover {

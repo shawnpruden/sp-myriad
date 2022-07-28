@@ -22,18 +22,11 @@ export default function Slider() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { results } = await tmdb.getTrends(timeWindow.week);
+        const params = { page: Math.floor(Math.random() * 5 + 1) };
+
+        const { results } = await tmdb.getTrends(timeWindow.week, { params });
 
         setTrends(shuffle(results, 6));
-
-        console.log(
-          '%cLogged',
-          'color: #ff5370; margin: 0.2rem',
-          'at',
-          new Date().toLocaleTimeString('en-US', { hour12: false }),
-          '\n',
-          'fetching data!!'
-        );
       } catch (err) {
         console.log(err);
       }
@@ -73,15 +66,6 @@ export default function Slider() {
 
     return () => clearInterval(intervalId.current);
   }, [handleSlider]);
-
-  console.log(
-    '%cLogged',
-    'color: #ffcb6b; margin: 0.2rem',
-    'at',
-    new Date().toLocaleTimeString('en-US', { hour12: false }),
-    '\n',
-    trends
-  );
 
   const handleIndicator = (index) => {
     setSliderIndex(index);

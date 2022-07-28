@@ -36,23 +36,25 @@ export default function List({
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const params = { page: Math.floor(Math.random() * 5 + 1) };
+
         let response;
 
         switch (type) {
           case mediaType.all:
-            response = await tmdb.getTrends(dataType);
+            response = await tmdb.getTrends(dataType, { params });
             break;
 
           case mediaType.movie:
             response = await (isNaN(dataType)
-              ? tmdb.getMovies(dataType)
-              : tmdb.getMoviesWithGenres(dataType));
+              ? tmdb.getMovies(dataType, { params })
+              : tmdb.getMoviesWithGenres(dataType, { params }));
             break;
 
           case mediaType.tv:
             response = await (isNaN(dataType)
-              ? tmdb.getTvSeries(dataType)
-              : tmdb.getTvWithGenres(dataType));
+              ? tmdb.getTvSeries(dataType, { params })
+              : tmdb.getTvWithGenres(dataType, { params }));
             break;
 
           default:

@@ -34,19 +34,16 @@ export const mediaType = {
   all: 'all',
   movie: 'movie',
   tv: 'tv',
-  person: 'person',
 };
 
 export const movieType = {
   top_rated: 'top_rated',
   popular: 'popular',
-  upcoming: 'upcoming',
 };
 
 export const tvType = {
   top_rated: 'top_rated',
   popular: 'popular',
-  on_the_air: 'on_the_air',
 };
 
 export const timeWindow = {
