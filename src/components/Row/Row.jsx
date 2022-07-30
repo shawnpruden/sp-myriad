@@ -1,15 +1,14 @@
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import styled from 'styled-components';
-import { bp } from '../../mobile';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Mousewheel, Navigation } from 'swiper';
 
-import { useMedia } from '../../hooks';
+import { bp } from 'mobile';
+import { useMedia } from 'hooks';
 
-export const Container = styled.div`
+import styled from 'styled-components';
+const Container = styled.div`
   .swiper {
     overflow: visible;
   }
@@ -21,6 +20,8 @@ export const Container = styled.div`
     border-radius: 5px;
 
     cursor: pointer;
+
+    width: auto;
   }
 
   .swiper-button-next::after,
@@ -78,7 +79,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Image = styled.img`
+const Image = styled.img`
   object-fit: contain;
   object-position: center;
 
@@ -90,7 +91,14 @@ const shuffle = (arr) => arr.sort(() => 0.5 - Math.random());
 export default function Row({ rowData }) {
   const navigate = useNavigate();
 
-  const { xs } = useMedia();
+  const { xs, md } = useMedia();
+
+  const space = (() => {
+    if (xs) return 10;
+    if (md) return 15;
+
+    return 20;
+  })();
 
   const rowItems = useMemo(() => shuffle(rowData), [rowData]);
 
@@ -101,7 +109,7 @@ export default function Row({ rowData }) {
         freeMode={true}
         navigation={true}
         mousewheel={{ forceToAxis: true }} // > disable swipe on y-axis
-        spaceBetween={xs ? 10 : 20}
+        spaceBetween={space}
         slidesPerView={xs ? 3 : 6}
         slidesPerGroup={6}
       >

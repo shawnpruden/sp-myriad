@@ -3,19 +3,12 @@ import { useLocation, useParams } from 'react-router-dom';
 
 import { Button, Container, Grid, Header, Title } from './styles';
 
-import tmdb, {
-  mediaType,
-  movieType,
-  timeWindow,
-  tvType,
-} from '../../apis/tmdb';
-import header from '../../assets/header.jpeg';
+import tmdb, { mediaType, movieType, timeWindow, tvType } from 'apis/tmdb';
+import header from 'assets/header.jpeg';
+import { firstRender, secondRender, thirdRender } from 'data';
 
-import { firstRender, secondRender, thirdRender } from '../data';
-
-import Card from '../../components/Card/Card';
-
-import { useList } from '../../hooks';
+import Card from 'components/Card/Card';
+import { useList } from 'hooks';
 
 const reduce = (arr) => {
   return arr.reduce((result, curObj) => {
@@ -34,7 +27,7 @@ export default function Gallery() {
 
   const [data, setData] = useState({});
 
-  const { type, term, genre, networks, id } = useParams();
+  const { type, term, genre, options, id } = useParams();
   const { pathname } = useLocation();
 
   const { list } = useList();
@@ -54,7 +47,7 @@ export default function Gallery() {
           switch (type) {
             case mediaType.movie:
               response = await (genre
-                ? tmdb.getMoviesWithGenres(id, { params })
+                ? tmdb.getWithGenres(mediaType.movie, id, { params })
                 : tmdb.getMovies(movieType.popular, { params }));
 
               genre
@@ -68,7 +61,7 @@ export default function Gallery() {
 
             case mediaType.tv:
               response = await (genre
-                ? tmdb.getTvWithGenres(id, { params })
+                ? tmdb.getWithGenres(mediaType.tv, id, { params })
                 : tmdb.getTvSeries(tvType.popular, { params }));
 
               genre
@@ -80,13 +73,25 @@ export default function Gallery() {
 
               break;
 
-            case 'networks':
-              response = await tmdb.getTvWithNetworks(id, {
+            case 'companies':
+              response = await tmdb.getWithCompanies(id, {
                 params,
               });
 
               setData({
-                title: networks.split('-').join(' '),
+                title: options.split('-').join(' '),
+                path: mediaType.movie,
+              });
+
+              break;
+
+            case 'networks':
+              response = await tmdb.getWithNetworks(id, {
+                params,
+              });
+
+              setData({
+                title: options.split('-').join(' '),
                 path: mediaType.tv,
               });
 
@@ -117,7 +122,8 @@ export default function Gallery() {
               break;
 
             case secondRender[0].path:
-              response = await tmdb.getMoviesWithGenres(
+              response = await tmdb.getWithGenres(
+                mediaType.movie,
                 secondRender[0].dataType,
                 { params }
               );
@@ -127,7 +133,8 @@ export default function Gallery() {
               break;
 
             case secondRender[1].path:
-              response = await tmdb.getMoviesWithGenres(
+              response = await tmdb.getWithGenres(
+                mediaType.movie,
                 secondRender[1].dataType,
                 { params }
               );
@@ -137,7 +144,8 @@ export default function Gallery() {
               break;
 
             case secondRender[2].path:
-              response = await tmdb.getMoviesWithGenres(
+              response = await tmdb.getWithGenres(
+                mediaType.movie,
                 secondRender[2].dataType,
                 { params }
               );
@@ -147,27 +155,39 @@ export default function Gallery() {
               break;
 
             case thirdRender[0].path:
-              response = await tmdb.getTvWithGenres(thirdRender[0].dataType, {
-                params,
-              });
+              response = await tmdb.getWithGenres(
+                mediaType.tv,
+                thirdRender[0].dataType,
+                {
+                  params,
+                }
+              );
 
               setData({ title: thirdRender[0].title, path: mediaType.tv });
 
               break;
 
             case thirdRender[1].path:
-              response = await tmdb.getTvWithGenres(thirdRender[1].dataType, {
-                params,
-              });
+              response = await tmdb.getWithGenres(
+                mediaType.tv,
+                thirdRender[1].dataType,
+                {
+                  params,
+                }
+              );
 
               setData({ title: thirdRender[1].title, path: mediaType.tv });
 
               break;
 
             case thirdRender[2].path:
-              response = await tmdb.getTvWithGenres(thirdRender[2].dataType, {
-                params,
-              });
+              response = await tmdb.getWithGenres(
+                mediaType.tv,
+                thirdRender[2].dataType,
+                {
+                  params,
+                }
+              );
 
               setData({ title: thirdRender[2].title, path: mediaType.tv });
 
@@ -182,7 +202,17 @@ export default function Gallery() {
               ? { page: page + 1, query: term }
               : { page: 1, query: term };
 
-          response = await tmdb.search({ params });
+          response = await (type === 'all'
+            ? tmdb.searchMedia({ params })
+            : tmdb
+                .searchPerson({ params })
+                .then(({ results }) =>
+                  [].concat.apply(
+                    [],
+                    results.map((result) => result.known_for)
+                  )
+                )
+                .then((results) => ({ results })));
 
           const title = response.results.some((result) =>
             result.hasOwnProperty('poster_path')
@@ -205,7 +235,7 @@ export default function Gallery() {
     },
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [term, page, type, genre, networks]
+    [type, term, page, genre, options]
   );
 
   useEffect(() => {
@@ -232,22 +262,6 @@ export default function Gallery() {
 
     setPage((prevState) => prevState + 1);
   };
-
-  console.log(
-    '%cLogged',
-    'color: #ff5370; margin: 0.2rem',
-    'at',
-    new Date().toLocaleTimeString('en-US', { hour12: false }),
-    '\n',
-    items,
-    page,
-    { totalPage },
-    { type },
-    { networks },
-    { genre }
-  );
-
-  console.log(data.title);
 
   const gridItems = useMemo(() => reduce(items), [items]);
 

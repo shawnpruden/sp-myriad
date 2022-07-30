@@ -19,14 +19,13 @@ import {
   xsIcon,
 } from './styles';
 
+import tmdb, { mediaType } from 'apis/tmdb';
+import { movieGenres, tvGenres } from 'apis/genres';
+
 import NavMenu from './NavMenu';
 import Account from './Account';
 import { Loader } from '../Loader';
-
-import { useAuth, useMedia, useScroll } from '../../hooks';
-
-import tmdb, { mediaType } from '../../apis/tmdb';
-import { movieGenres, tvGenres } from '../../apis/genres';
+import { useAuth, useMedia, useScroll } from 'hooks';
 
 const navItems = [
   { name: 'Movies', path: '/movie', genres: movieGenres },
@@ -40,8 +39,8 @@ export default function Navbar() {
   const [keywords, setKeywords] = useState([]);
   const [isActive, setIsActive] = useState(false); // > NavMenu-related
   const [isHidden, setIsHidden] = useState(true); // > xs
-  const inputRef = useRef();
-  const centerRef = useRef();
+  const inputRef = useRef(); // > xs
+  const centerRef = useRef(); // > xs
 
   // > NavItem-related
   const [text, setText] = useState(''); // > NavMenu-related

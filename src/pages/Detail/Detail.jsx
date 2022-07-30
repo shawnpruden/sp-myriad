@@ -17,14 +17,13 @@ import {
   Video,
 } from './styles';
 
-import tmdb from '../../apis/tmdb';
+import tmdb from 'apis/tmdb';
 
 import Info from './Info';
 import Casts from './Casts';
 import Trailers from './Trailers';
-import { List } from '../../components';
-
-import { useUpdate } from '../../hooks';
+import { List } from 'components';
+import { useUpdate } from 'hooks';
 
 const catalog = [
   { title: 'About', id: 'about' },
@@ -55,17 +54,6 @@ export default function Detail() {
         const { results } = await tmdb.getVideos(type, id);
         const { cast } = await tmdb.getCredits(type, id);
 
-        console.log(
-          '%cLogged',
-          'color: #f78c6c; margin: 0.2rem',
-          'at',
-          new Date().toLocaleTimeString('en-US', { hour12: false }),
-          '\n',
-          { data },
-          { results },
-          { cast }
-        );
-
         setItem(data);
         setVideos(results);
         setCasts(cast);
@@ -77,7 +65,7 @@ export default function Detail() {
     fetchData();
   }, [id, type]);
 
-  const listData = { type: 'similar', dataType: type, id: id };
+  const listData = { type: type, listType: 'similar', id: id };
 
   return (
     <Container>
@@ -122,8 +110,8 @@ export default function Detail() {
           {videos.length ? (
             <iframe
               title="trailer"
-              src={`https://www.youtube.com/embed/${videos[0]?.key}?autoplay=1&rel=0`}
-              allow="fullscreen"
+              src={`https://www.youtube.com/embed/${videos[0]?.key}?autoplay=1&rel=0&modestbranding=1`}
+              allow="autoplay; fullscreen"
             ></iframe>
           ) : (
             <img

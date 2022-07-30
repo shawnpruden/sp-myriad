@@ -1,32 +1,30 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { FaStar } from 'react-icons/fa';
 import { MdPlaylistAddCheck, MdPlaylistAdd } from 'react-icons/md';
 
 import {
   Button,
-  Genres,
   grayed,
   Header,
   InfoContent,
-  InfoGroup,
+  Extra,
   InfoWrapper,
-  Logo,
-  Networks,
-  Note,
+  Logos,
   Rate,
   Title,
 } from './styles';
 
-import { Loader } from '../../components/Loader';
-
-import { useList, useUpdate } from '../../hooks';
+import { Loader } from 'components/Loader';
+import { useList, useUpdate } from 'hooks';
 
 const convert = (mins) => `${Math.trunc(mins / 60)}h ${mins % 60}m`;
 
 export default function Info({ item, type }) {
-  const { isAdded, isLoading, handleList } = useList(item, type);
+  const navigate = useNavigate();
 
+  const { isAdded, isLoading, handleList } = useList(item, type);
   const update = useUpdate();
 
   const runtime = convert(item.runtime);
@@ -45,7 +43,25 @@ export default function Info({ item, type }) {
     .filter((data) => !!data)
     .join(' · ');
 
-  console.log(info);
+  const data = (() => {
+    if (!!item.networks?.length)
+      return {
+        logos: item.networks.filter(
+          ({ id, logo_path, name }) => id && logo_path && name
+        ),
+        path: 'networks',
+      };
+    if (!!item.production_companies?.length)
+      return {
+        logos: item.production_companies.filter(
+          ({ id, logo_path, name }) => id && logo_path && name
+        ),
+        path: 'companies',
+      };
+
+    return { logos: [] };
+  })();
+  const { logos, path } = data;
 
   return (
     <InfoWrapper id="overview">
@@ -62,41 +78,49 @@ export default function Info({ item, type }) {
         )}
       </Header>
 
-      <InfoGroup>
-        {!!item.networks?.length && (
-          <Networks>
-            {item.networks.map(({ id, logo_path, name }) => (
-              <Logo key={id}>
+      <Extra isWrapped={!logos?.length || logos?.length > 5}>
+        {!!logos?.length && (
+          <Logos>
+            {logos.map(({ id, logo_path, name }) => (
+              <li
+                key={id}
+                onClick={() =>
+                  navigate(
+                    `/${path}/${name.replace(/\s+/g, '-').toLowerCase()}/${id}`
+                  )
+                }
+              >
                 <img
                   src={`https://image.tmdb.org/t/p/w500${logo_path}?${Date.now()}`}
-                  alt={name}
+                  alt=""
                   onError={logo_path && update}
                 />
-              </Logo>
+              </li>
             ))}
-          </Networks>
+          </Logos>
         )}
 
-        <InfoContent>
+        <p>
           <span>{info}</span>
 
           {!!item.spoken_languages?.length && (
-            <span>
+            <span style={{ textTransform: 'uppercase' }}>
               <span> · </span>
               {item.spoken_languages
                 .map((language) => language.iso_639_1)
                 .join(', ')}
             </span>
           )}
-        </InfoContent>
-      </InfoGroup>
+        </p>
+      </Extra>
 
-      {item.next_episode_to_air && (
-        <Note>
-          {`Upcoming Episode:
+      <InfoContent>
+        {item.next_episode_to_air && (
+          <p style={{ color: 'var(--color-primary)' }}>
+            {`Upcoming Episode:
           ${item.next_episode_to_air.name} (EP ${
-            item.next_episode_to_air.episode_number
-          }) -
+              item.next_episode_to_air.episode_number
+            }) -
 
           ${new Intl.DateTimeFormat('en-US', {
             weekday: 'short',
@@ -109,15 +133,15 @@ export default function Info({ item, type }) {
           ${new Date(item.next_episode_to_air.air_date).getDate()},
 
           ${new Date(item.next_episode_to_air.air_date).getFullYear()}`}
-        </Note>
-      )}
+          </p>
+        )}
 
-      {!item.next_episode_to_air && item.last_episode_to_air && (
-        <Note>
-          {`Previous Episode:
+        {!item.next_episode_to_air && item.last_episode_to_air && (
+          <p style={{ color: 'var(--color-primary)' }}>
+            {`Previous Episode:
           ${item.last_episode_to_air.name} (EP ${
-            item.last_episode_to_air.episode_number
-          }) -
+              item.last_episode_to_air.episode_number
+            }) -
 
           ${new Intl.DateTimeFormat('en-US', {
             weekday: 'short',
@@ -130,36 +154,37 @@ export default function Info({ item, type }) {
           ${new Date(item.last_episode_to_air.air_date).getDate()},
 
           ${new Date(item.last_episode_to_air.air_date).getFullYear()}`}
-        </Note>
-      )}
-
-      {!!item.genres?.length && (
-        <Genres>
-          {item.genres.map(({ id, name }) => (
-            <li key={id}>{name}</li>
-          ))}
-        </Genres>
-      )}
-
-      {item.overview && <p>{item.overview}</p>}
-
-      <Button onClick={(e) => handleList(e)} style={isAdded ? grayed : {}}>
-        {isLoading ? (
-          <Loader size={20} color="var(--color-white)" width={2} />
-        ) : (
-          <>
-            {isAdded ? (
-              <>
-                <MdPlaylistAddCheck /> Added
-              </>
-            ) : (
-              <>
-                <MdPlaylistAdd /> Add
-              </>
-            )}
-          </>
+          </p>
         )}
-      </Button>
+
+        {!!item.genres?.length && (
+          <ul>
+            {item.genres.map(({ id, name }) => (
+              <li key={id}>{name}</li>
+            ))}
+          </ul>
+        )}
+
+        {item.overview && <p>{item.overview}</p>}
+
+        <Button onClick={(e) => handleList(e)} style={isAdded ? grayed : {}}>
+          {isLoading ? (
+            <Loader size={20} color="var(--color-white)" width={2} />
+          ) : (
+            <>
+              {isAdded ? (
+                <>
+                  <MdPlaylistAddCheck /> Added
+                </>
+              ) : (
+                <>
+                  <MdPlaylistAdd /> Add
+                </>
+              )}
+            </>
+          )}
+        </Button>
+      </InfoContent>
     </InfoWrapper>
   );
 }

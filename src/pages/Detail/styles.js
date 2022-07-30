@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { bp } from '../../mobile';
+import { bp } from 'mobile';
 
 export const Container = styled.div`
   display: flex;
@@ -105,7 +105,6 @@ export const Catalog = styled.ul`
 
 export const Right = styled.div`
   flex: 3;
-
   position: relative;
 
   overflow: hidden;
@@ -160,16 +159,36 @@ export const Video = styled.div`
 export const Content = styled.div`
   padding: 0 2rem;
 
+  overflow: hidden;
+
   @media ${bp.xs}, ${bp.md} {
     position: relative;
     z-index: 5;
     top: -0.5rem;
+  }
 
+  @media ${bp.xs} {
+    padding: 0;
+
+    section:last-child {
+      & > div {
+        padding: 0 1rem;
+      }
+    }
+  }
+
+  @media ${bp.md} {
     padding: 0 1rem;
+
+    section:last-child {
+      & > div {
+        overflow: hidden;
+      }
+    }
   }
 `;
 
-// * Info-related
+// ! Info-related
 export const InfoWrapper = styled.section`
   color: var(--color-gray-alt);
   font-size: 0.9rem;
@@ -186,6 +205,10 @@ export const Header = styled.header`
 
   @media ${bp.xs}, ${bp.md} {
     flex-direction: column-reverse;
+  }
+
+  @media ${bp.xs} {
+    padding: 0 1rem;
   }
 `;
 
@@ -224,52 +247,91 @@ export const Rate = styled.h3`
   }
 `;
 
-export const InfoGroup = styled.div`
+export const Extra = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: ${({ isWrapped }) => isWrapped && 'column'};
+  align-items: ${({ isWrapped }) => (isWrapped ? 'flex-start' : 'center')};
 
-  margin: 0.2rem 0 0.5rem;
+  margin: 0.2rem 0;
+
+  ul {
+    width: ${({ isWrapped }) => isWrapped && '100%'};
+  }
+
+  p {
+    margin-left: ${({ isWrapped }) => !isWrapped && '0.5rem'};
+    margin-top: ${({ isWrapped }) => isWrapped && '0.2rem'};
+  }
 
   @media ${bp.xs}, ${bp.md} {
     flex-direction: column;
     align-items: flex-start;
+
+    p {
+      margin: 0.2rem 0 0 0;
+    }
+  }
+
+  @media ${bp.xs} {
+    p {
+      padding: 0 1rem;
+    }
   }
 `;
 
-export const Networks = styled.ul`
+export const Logos = styled.ul`
   display: flex;
+  gap: 0.5rem;
   align-items: center;
-`;
 
-export const Logo = styled.li`
-  margin-right: 0.5rem;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   img {
-    width: 50px;
+    width: 60px;
     padding: 0.3rem;
 
     border-radius: 3px;
 
+    aspect-ratio: 2 / 1;
+    object-fit: contain;
+    object-position: center;
+
     background-color: var(--color-white);
   }
 
+  @media ${bp.lg} {
+    li {
+      opacity: 0.7;
+
+      cursor: pointer;
+
+      transition: 0.5s;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
   @media ${bp.xs}, ${bp.md} {
-    margin-bottom: 0.5rem;
+    width: 100%;
+
+    li {
+      opacity: 0.9;
+    }
+  }
+
+  @media ${bp.xs} {
+    padding: 0 1rem;
   }
 `;
 
-export const InfoContent = styled.div`
-  span:last-child {
-    text-transform: uppercase;
+export const InfoContent = styled.main`
+  ul {
+    margin: 0.5rem 0;
   }
-`;
-
-export const Note = styled.p`
-  color: var(--color-primary);
-`;
-
-export const Genres = styled.ul`
-  margin: 0.5rem 0;
 
   li {
     display: inline-block;
@@ -279,6 +341,10 @@ export const Genres = styled.ul`
 
     color: var(--color-white);
     border: 1px solid var(--color-white);
+  }
+
+  @media ${bp.xs} {
+    padding: 0 1rem;
   }
 `;
 
@@ -319,7 +385,7 @@ export const Button = styled.button`
   }
 `;
 
-// * Casts-related
+// ! Casts-related
 export const Subtitle = styled.h3`
   position: relative;
 
@@ -343,7 +409,7 @@ export const Subtitle = styled.h3`
   }
 
   @media ${bp.xs} {
-    left: 1rem;
+    left: 1.5rem;
 
     margin-bottom: 1.5rem;
   }
@@ -361,9 +427,15 @@ export const CastsGrid = styled.ul`
   gap: 2rem;
 
   @media ${bp.xs} {
-    grid-template-columns: 1fr;
+    display: flex;
+    gap: 1rem;
 
-    padding-left: 1rem;
+    padding: 0 1rem;
+
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   @media ${bp.md} {
@@ -390,6 +462,8 @@ export const GridItem = styled.li`
   }
 
   h5 {
+    display: inline-block;
+
     font-size: 1rem;
 
     margin-bottom: 0.5rem;
@@ -400,14 +474,44 @@ export const GridItem = styled.li`
     font-size: 0.9rem;
   }
 
+  @media ${bp.lg} {
+    img,
+    h5 {
+      cursor: pointer;
+
+      transition: 0.3s;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
   @media ${bp.xs} {
+    flex-direction: column;
+
+    text-align: center;
+
     div {
-      padding: 1.2rem 0 0 2rem;
+      padding: 0;
+      margin-top: 0.8rem;
     }
 
     img {
-      width: 100px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
+    }
+
+    h5 {
+      margin-bottom: 0.2rem;
+    }
+
+    p {
+      display: flex;
+      flex-direction: column;
+    }
+
+    span:first-child {
+      display: none;
     }
   }
 
@@ -431,7 +535,7 @@ export const GridItem = styled.li`
   }
 `;
 
-// * Trailer-related
+// ! Trailer-related
 export const TrailerWrapper = styled.div`
   iframe {
     width: 100%;
@@ -442,8 +546,20 @@ export const TrailerWrapper = styled.div`
   }
 
   @media ${bp.xs} {
+    display: flex;
+    gap: 10px;
+
+    padding: 0 1rem;
+
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
     iframe {
-      margin-bottom: 1rem;
+      height: ${({ isMultiple }) => isMultiple && '12rem'};
+
+      margin-bottom: 0;
     }
   }
 
@@ -454,14 +570,28 @@ export const TrailerWrapper = styled.div`
   }
 `;
 
+export const Prompt = styled.p`
+  color: var(--color-gray-alt);
+
+  transition: 0.5s;
+
+  @media ${bp.xs} {
+    text-align: center;
+  }
+`;
+
 export const Divider = styled.hr`
-  margin: 2rem 0;
+  margin: 2rem auto;
 
   background-color: #343a40;
   border: none;
 
   width: 100%;
   height: 1px;
+
+  @media ${bp.xs} {
+    width: calc(100% - 2rem);
+  }
 `;
 
 export const grayed = {

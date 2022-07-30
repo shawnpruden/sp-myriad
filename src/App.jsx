@@ -6,10 +6,9 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 
-import { Footer, Navbar } from './components';
-import { Detail, Gallery, Home, Login } from './pages';
-
-import { ContextProviders } from './hooks';
+import { Footer, Navbar } from 'components';
+import { Detail, Gallery, Home, Login } from 'pages';
+import { ContextProviders } from 'hooks';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -24,7 +23,7 @@ export default function App() {
         <Route path="/:type" element={<Gallery />} />
         <Route path="/:type/:id" element={<Detail />} />
         <Route path="/:type/genres/:genre/:id" element={<Gallery />} />
-        <Route path="/:type/:networks/:id" element={<Gallery />} />
+        <Route path="/:type/:options/:id" element={<Gallery />} />
 
         <Route path="/:type/search/:term" element={<Gallery />} />
 

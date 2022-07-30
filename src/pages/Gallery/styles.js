@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { bp } from '../../mobile';
+import { bp } from 'mobile';
 
 export const Header = styled.header`
   position: relative;
@@ -62,6 +62,9 @@ export const Title = styled.h3`
         return;
 
       case 'networks':
+        return 'uppercase';
+
+      case 'companies':
         return 'uppercase';
 
       default:

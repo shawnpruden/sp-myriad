@@ -15,11 +15,10 @@ import {
   Wrapper,
 } from './styles';
 
+import tmdb from 'apis/tmdb';
+
 import Modal from '../Modal/Modal';
-
-import { useMedia, useUpdate } from '../../hooks';
-
-import tmdb from '../../apis/tmdb';
+import { useMedia, useUpdate } from 'hooks';
 
 const truncate = (str, num) =>
   str?.length > num ? str.slice(0, num - 1) + '...' : str;
@@ -43,11 +42,10 @@ export default function SliderItem({
   const handleFetchVideos = async (type, id) => {
     try {
       const { results } = await tmdb.getVideos(type, id);
-      console.log(results);
 
       if (results.length) {
         setVideoSrc(
-          `https://www.youtube.com/embed/${results[0].key}?autoplay=1&rel=0`
+          `https://www.youtube.com/embed/${results[0].key}?autoplay=1&rel=0&modestbranding=1`
         );
       } else {
         setIsAvailable(false);

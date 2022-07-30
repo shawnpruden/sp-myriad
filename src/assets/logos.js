@@ -10,10 +10,12 @@ import starz from './logos/starz.png';
 import amazon from './logos/amazon.png';
 import history from './logos/history.png';
 import ng from './logos/ng.png';
-import discovery from './logos/discovery.png';
 import showtime from './logos/showtime.png';
 import cbs from './logos/cbs.png';
 import amc from './logos/amc.png';
+import fuji from './logos/fuji.png';
+import tokyo from './logos/tokyo.png';
+import hbomax from './logos/hbomax.png';
 
 const logos = {
   hbo,
@@ -28,10 +30,12 @@ const logos = {
   amazon,
   history,
   ng,
-  discovery,
   showtime,
   cbs,
   amc,
+  fuji,
+  tokyo,
+  hbomax,
 };
 
 export default logos;

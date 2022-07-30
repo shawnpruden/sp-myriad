@@ -70,16 +70,18 @@ const tmdb = {
   getSimilar: (type, id) =>
     instance.get(`/${mediaType[type]}/${id}/recommendations`),
 
-  getMoviesWithGenres: (id, params) =>
-    instance.get(`/discover/movie?with_genres=${id}`, params),
+  getWithGenres: (type, id, params) =>
+    instance.get(`/discover/${mediaType[type]}?with_genres=${id}`, params),
 
-  getTvWithGenres: (id, params) =>
-    instance.get(`/discover/tv?with_genres=${id}`, params),
+  getWithCompanies: (id, params) =>
+    instance.get(`/discover/movie?with_companies=${id}`, params),
 
-  getTvWithNetworks: (id, params) =>
+  getWithNetworks: (id, params) =>
     instance.get(`/discover/tv?with_networks=${id}`, params),
 
-  search: (params) => instance.get('/search/multi', params),
+  searchMedia: (params) => instance.get('/search/multi', params),
+
+  searchPerson: (params) => instance.get(`/search/person`, params),
 
   getKeywords: (params) => instance.get('/search/keyword', params),
 };

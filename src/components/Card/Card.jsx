@@ -18,13 +18,11 @@ import {
   Title,
 } from './styles';
 
+import { movieGenres, tvGenres } from 'apis/genres';
+import noImage from 'assets/img-not-available.png';
+
 import { Loader } from '../Loader';
-
-import { mediaType } from '../../apis/tmdb';
-import { movieGenres, tvGenres } from '../../apis/genres';
-import noImage from '../../assets/img-not-available.png';
-
-import { useList, useUpdate } from '../../hooks';
+import { useList, useUpdate } from 'hooks';
 
 const truncate = (str, num) =>
   str?.length > num ? str.slice(0, num - 1) + '...' : str;
@@ -39,7 +37,7 @@ const createGenres = (ids) => {
 
 const modify = (num) => Math.round(num * 10) / 10;
 
-export default function Card({ item, type }) {
+export default function Card({ item, type, listType }) {
   const [isVisible, setIsVisible] = useState(false);
   const update = useUpdate();
 
@@ -53,13 +51,11 @@ export default function Card({ item, type }) {
 
   return (
     <Container
-      onClick={() =>
-        navigate(
-          `/${item.media_type || type || mediaType.tv || mediaType.movie}/${
-            item.id
-          }`
-        )
-      }
+      onClick={() => {
+        navigate(`/${item.media_type || type}/${item.id}`);
+
+        listType === 'similar' && navigate(0);
+      }}
       style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
     >
       <Image

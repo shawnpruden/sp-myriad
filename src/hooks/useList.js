@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import { db } from '../firebase';
-
 import toast from 'react-hot-toast';
 
 import {
@@ -13,6 +10,7 @@ import {
   setDoc,
 } from 'firebase/firestore';
 
+import { db } from '../firebase';
 import useAuth from './useAuth';
 
 const toaster = {
@@ -65,6 +63,7 @@ export default function useList(item, type) {
 
   const handleList = async (e) => {
     e.stopPropagation();
+
     if (!user) {
       navigate('/login');
 

@@ -20,7 +20,7 @@ import {
   Wrapper,
 } from './styles';
 
-import { useAuth } from '../../hooks';
+import { useAuth } from 'hooks';
 
 const formType = {
   signIn: { title: 'Sign In', state: 'signIn' },
@@ -97,8 +97,6 @@ export default function Login() {
     }
   };
 
-  // console.log(errors, isValid, watch());
-
   const handleType = (type) => {
     setError(null);
     reset();
@@ -109,8 +107,6 @@ export default function Login() {
 
     setTimeout(() => setType(type), 500);
   };
-
-  console.log(type);
 
   return (
     <Container>

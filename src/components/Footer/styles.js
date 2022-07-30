@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { bp } from '../../mobile';
+import { bp } from 'mobile';
 
 export const Container = styled.footer`
   position: relative;

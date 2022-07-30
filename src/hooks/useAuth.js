@@ -7,8 +7,6 @@ import React, {
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { auth, db, provider } from '../firebase';
-
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -19,6 +17,8 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
+
+import { auth, db, provider } from '../firebase';
 
 const AuthContext = createContext({});
 
@@ -63,7 +63,7 @@ export function AuthProvider({ children }) {
 
       setUser(user);
 
-      navigate('/');
+      navigate(-1);
 
       setIsLoading(false);
 
@@ -88,7 +88,7 @@ export function AuthProvider({ children }) {
 
       setUser(user);
 
-      navigate('/');
+      navigate(-1);
 
       setIsLoading(false);
     } catch (err) {
@@ -142,11 +142,11 @@ export function AuthProvider({ children }) {
     setIsLoading(true);
 
     try {
-      const result = await signInWithPopup(auth, provider);
+      await signInWithPopup(auth, provider);
 
-      console.log(result);
+      await setDoc(doc(db, 'users', user.uid), {});
 
-      navigate('/');
+      navigate(-1);
 
       setIsLoading(false);
     } catch (err) {

@@ -4,9 +4,9 @@ import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 import { ArrowButton, Container, glitter, Indicator } from './styles';
 
-import SliderItem from './SliderItem';
+import tmdb, { timeWindow } from 'apis/tmdb';
 
-import tmdb, { timeWindow } from '../../apis/tmdb';
+import SliderItem from './SliderItem';
 
 const shuffle = (arr, num) =>
   arr

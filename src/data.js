@@ -1,5 +1,5 @@
-import { mediaType, movieType, timeWindow, tvType } from '../apis/tmdb';
-import logos from '../assets/logos';
+import { mediaType, movieType, timeWindow, tvType } from 'apis/tmdb';
+import logos from 'assets/logos';
 
 // > Row data
 export const networks = [
@@ -18,7 +18,9 @@ export const networks = [
   { id: 2739, name: 'Disney+', logo: logos.disney },
   { id: 65, name: 'History', logo: logos.history },
   { id: 43, name: 'National Geographic', logo: logos.ng },
-  { id: 2087, name: 'Discovery Channel', logo: logos.discovery },
+  { id: 1, name: 'Fuji TV', logo: logos.fuji },
+  { id: 98, name: 'TV Tokyo', logo: logos.tokyo },
+  { id: 3186, name: 'HBO Max', logo: logos.hbomax },
 ];
 
 // > List data

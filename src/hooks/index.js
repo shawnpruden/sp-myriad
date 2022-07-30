@@ -25,3 +25,4 @@ export { default as useList } from './useList';
 export { default as useMedia } from './useMedia';
 export { default as useScroll } from './useScroll';
 export { default as useUpdate } from './useUpdate';
+export { default as useOpacity } from './useOpacity';

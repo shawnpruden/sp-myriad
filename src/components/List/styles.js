@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { bp } from '../../mobile';
+import { bp } from 'mobile';
 
 export const Container = styled.div`
   margin-bottom: 5rem;
@@ -85,7 +85,7 @@ export const Wrapper = styled.div`
   }
 
   .swiper-slide {
-    width: ${({ type }) => (type === 'similar' ? '25%' : '18%')};
+    width: ${({ listType }) => (listType === 'similar' ? '25%' : '18%')};
   }
 
   .swiper-button-next,
@@ -104,7 +104,7 @@ export const Wrapper = styled.div`
   }
 
   .swiper-button-prev {
-    left: ${({ type }) => (type === 'similar' ? '-1rem' : '-7rem')};
+    left: ${({ listType }) => (listType === 'similar' ? '-1rem' : '-7rem')};
   }
 
   .swiper-button-disabled {
@@ -126,7 +126,17 @@ export const Wrapper = styled.div`
 
   @media ${bp.md} {
     .swiper-slide {
-      width: 22%;
+      width: ${({ listType }) => listType === 'similar' && '21%'};
     }
+  }
+`;
+
+export const Prompt = styled.p`
+  color: var(--color-gray-alt);
+
+  transition: 0.5s;
+
+  @media ${bp.xs} {
+    text-align: center;
   }
 `;

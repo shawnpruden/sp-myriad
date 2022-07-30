@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 
-export const Spinner = styled.div`
+import styled from 'styled-components';
+const Spinner = styled.div`
   display: inline-block;
 
   width: ${({ size }) => size}px;
@@ -34,5 +34,5 @@ export function Loader({
   color = 'var(--color-primary)',
   width = 8,
 }) {
-  return <Spinner size={size} color={color} width={width}></Spinner>;
+  return <Spinner size={size} color={color} width={width} />;
 }

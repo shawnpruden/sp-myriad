@@ -6,7 +6,7 @@ import { IoExitOutline } from 'react-icons/io5';
 
 import { Button } from './styles';
 
-import { useAuth } from '../../hooks';
+import { useAuth } from 'hooks';
 
 export default function Account() {
   const { user, handleSignOut } = useAuth();

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Menu, MenuItems, MenuItem, Title, active, inactive } from './styles';
 
-import { mediaType } from '../../apis/tmdb';
+import { mediaType } from 'apis/tmdb';
 
 export default function NavMenu({ data, path, isActive, type }) {
   return (

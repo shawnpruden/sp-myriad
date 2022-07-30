@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
+import { firstRender, networks, secondRender, thirdRender } from 'data';
+
+import { Slider, List, Row } from 'components';
+import { bp } from 'mobile';
+import { useMedia } from 'hooks';
+
 import styled from 'styled-components';
-import { bp } from '../mobile';
-
-import { Slider, List, Row } from '../components';
-import { firstRender, networks, secondRender, thirdRender } from './data';
-import { useMedia } from '../hooks';
-
-export const Wrapper = styled.section`
+const Wrapper = styled.section`
   padding: 1.5rem 2rem 1.5rem 8rem;
 
   overflow-x: hidden;
@@ -48,16 +48,20 @@ export default function Home() {
 
   const { xs, md } = useMedia();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    setLists((prevState) => [...prevState, ...listsData[counter]]);
+  }, [counter]);
+
   const wrapper = (() => {
     if (xs) return xsWrapper;
     if (md) return mdWrapper;
 
     return lgWrapper;
   })();
-
-  useEffect(() => {
-    setLists((prevState) => [...prevState, ...listsData[counter]]);
-  }, [counter]);
 
   return (
     <>
