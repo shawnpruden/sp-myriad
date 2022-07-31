@@ -217,7 +217,14 @@ export default function Gallery() {
           const title = response.results.some((result) =>
             result.hasOwnProperty('poster_path')
           )
-            ? `Results for "${term}"`
+            ? `Results for "${
+                type === 'all'
+                  ? term
+                  : term
+                      .split(' ')
+                      .map((str) => `${str[0].toUpperCase()}${str.slice(1)}`)
+                      .join(' ')
+              }"`
             : 'No results found';
 
           setData({

@@ -61,6 +61,9 @@ export const Title = styled.h3`
       case 'all':
         return;
 
+      case 'cast':
+        return;
+
       case 'networks':
         return 'uppercase';
 
@@ -88,11 +91,14 @@ export const Title = styled.h3`
   }
 
   @media ${bp.xs} {
-    left: 1rem;
-
-    font-size: 1.5rem;
+    font-size: ${({ type }) =>
+      type === 'all' || type === 'cast' ? '1.2rem' : '1.5rem'};
 
     margin-bottom: 1rem;
+
+    &::before {
+      left: -0.5rem;
+    }
   }
 
   @media ${bp.md} {
