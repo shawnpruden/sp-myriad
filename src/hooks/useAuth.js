@@ -156,17 +156,19 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const handleClearError = () => setError(null);
+
   const memoedValue = useMemo(
     () => ({
       error,
       isLoading,
       user,
-      setError,
       handleSignUp,
       handleSignIn,
       handleSignOut,
       handleReset,
       handleGoogleAuth,
+      handleClearError,
     }),
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

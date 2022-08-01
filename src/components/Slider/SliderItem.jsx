@@ -66,7 +66,7 @@ export default function SliderItem({
     <Wrapper>
       <Modal
         isActive={isActive}
-        setIsActive={setIsActive}
+        handleClose={() => setIsActive(false)}
         handleSlider={handleSlider}
       >
         {isAvailable ? (

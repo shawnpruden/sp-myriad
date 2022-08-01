@@ -34,12 +34,12 @@ export default function Login() {
 
   const {
     error,
-    setError,
     isLoading,
     handleSignUp,
     handleSignIn,
     handleReset,
     handleGoogleAuth,
+    handleClearError,
   } = useAuth();
 
   const {
@@ -98,7 +98,7 @@ export default function Login() {
   };
 
   const handleType = (type) => {
-    setError(null);
+    handleClearError();
     reset();
 
     setIsSwitching(true);
