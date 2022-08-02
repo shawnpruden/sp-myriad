@@ -319,14 +319,14 @@ export const Logos = styled.ul`
   }
 
   @media ${bp.xs}, ${bp.md} {
-    min-width: 100%;
-
     li {
       opacity: 0.9;
     }
   }
 
   @media ${bp.xs} {
+    padding-right: 1rem;
+
     &::before,
     &::after {
       content: '';
