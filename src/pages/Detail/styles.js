@@ -316,7 +316,7 @@ export const Logos = styled.ul`
   }
 
   @media ${bp.xs}, ${bp.md} {
-    width: 100%;
+    min-width: 100%;
 
     li {
       opacity: 0.9;
@@ -324,11 +324,7 @@ export const Logos = styled.ul`
   }
 
   @media ${bp.xs} {
-    li:last-child {
-      margin-right: 1rem;
-    }
-
-    padding-left: 1rem;
+    padding: 0 1rem;
   }
 `;
 
