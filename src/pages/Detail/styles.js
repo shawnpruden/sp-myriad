@@ -281,12 +281,15 @@ export const Extra = styled.div`
 
 export const Logos = styled.ul`
   display: flex;
-  gap: 0.5rem;
   align-items: center;
 
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  li:not(:last-child) {
+    margin-right: 0.5rem;
   }
 
   img {
@@ -324,7 +327,11 @@ export const Logos = styled.ul`
   }
 
   @media ${bp.xs} {
-    padding: 0 1rem;
+    &::before,
+    &::after {
+      content: '';
+      min-width: 1rem;
+    }
   }
 `;
 
@@ -428,13 +435,21 @@ export const CastsGrid = styled.ul`
 
   @media ${bp.xs} {
     display: flex;
-    gap: 1rem;
-
-    padding: 0 1rem;
+    gap: 0;
 
     overflow-x: scroll;
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      min-width: 1rem;
+    }
+
+    li:not(:last-child) {
+      margin-right: 1rem;
     }
   }
 
@@ -547,13 +562,20 @@ export const TrailerWrapper = styled.div`
 
   @media ${bp.xs} {
     display: flex;
-    gap: 10px;
-
-    padding: 0 1rem;
 
     overflow-x: scroll;
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      min-width: 1rem;
+    }
+
+    iframe:not(:last-child) {
+      margin-right: 10px;
     }
 
     iframe {
