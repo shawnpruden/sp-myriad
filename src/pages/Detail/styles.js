@@ -281,12 +281,16 @@ export const Extra = styled.div`
 
 export const Logos = styled.ul`
   display: flex;
-  gap: 0.5rem;
+  /* gap: 0.5rem; */
   align-items: center;
 
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  li:not(:last-child) {
+    margin-right: 0.5rem;
   }
 
   img {
