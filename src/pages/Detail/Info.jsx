@@ -78,40 +78,38 @@ export default function Info({ item, type }) {
         )}
       </Header>
 
+      {!!logos?.length && (
+        <Logos isWrapped={!logos?.length || logos?.length > 5}>
+          {logos.map(({ id, logo_path, name }) => (
+            <li
+              key={id}
+              onClick={() =>
+                navigate(
+                  `/${path}/${name.replace(/\s+/g, '-').toLowerCase()}/${id}`
+                )
+              }
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w500${logo_path}?${Date.now()}`}
+                alt=""
+                onError={logo_path && update}
+              />
+            </li>
+          ))}
+        </Logos>
+      )}
+
       <Extra isWrapped={!logos?.length || logos?.length > 5}>
-        {!!logos?.length && (
-          <Logos>
-            {logos.map(({ id, logo_path, name }) => (
-              <li
-                key={id}
-                onClick={() =>
-                  navigate(
-                    `/${path}/${name.replace(/\s+/g, '-').toLowerCase()}/${id}`
-                  )
-                }
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${logo_path}?${Date.now()}`}
-                  alt=""
-                  onError={logo_path && update}
-                />
-              </li>
-            ))}
-          </Logos>
+        <span>{info}</span>
+
+        {!!item.spoken_languages?.length && (
+          <span style={{ textTransform: 'uppercase' }}>
+            <span> · </span>
+            {item.spoken_languages
+              .map((language) => language.iso_639_1)
+              .join(', ')}
+          </span>
         )}
-
-        <p>
-          <span>{info}</span>
-
-          {!!item.spoken_languages?.length && (
-            <span style={{ textTransform: 'uppercase' }}>
-              <span> · </span>
-              {item.spoken_languages
-                .map((language) => language.iso_639_1)
-                .join(', ')}
-            </span>
-          )}
-        </p>
       </Extra>
 
       <InfoContent>

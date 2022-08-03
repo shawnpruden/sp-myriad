@@ -247,41 +247,11 @@ export const Rate = styled.h3`
   }
 `;
 
-export const Extra = styled.div`
-  display: flex;
-  flex-direction: ${({ isWrapped }) => isWrapped && 'column'};
-  align-items: ${({ isWrapped }) => (isWrapped ? 'flex-start' : 'center')};
+export const Logos = styled.ul`
+  display: ${({ isWrapped }) => (isWrapped ? 'flex' : 'inline-flex')};
+  align-items: center;
 
   margin: 0.2rem 0;
-
-  ul {
-    width: ${({ isWrapped }) => isWrapped && '100%'};
-  }
-
-  p {
-    margin-left: ${({ isWrapped }) => !isWrapped && '0.5rem'};
-    margin-top: ${({ isWrapped }) => isWrapped && '0.2rem'};
-  }
-
-  @media ${bp.xs}, ${bp.md} {
-    flex-direction: column;
-    align-items: flex-start;
-
-    p {
-      margin: 0.2rem 0 0 0;
-    }
-  }
-
-  @media ${bp.xs} {
-    p {
-      padding: 0 1rem;
-    }
-  }
-`;
-
-export const Logos = styled.ul`
-  display: flex;
-  align-items: center;
 
   overflow: scroll;
   &::-webkit-scrollbar {
@@ -319,19 +289,40 @@ export const Logos = styled.ul`
   }
 
   @media ${bp.xs}, ${bp.md} {
+    display: flex;
+
     li {
       opacity: 0.9;
     }
   }
 
   @media ${bp.xs} {
-    padding-right: 1rem;
-
     &::before,
     &::after {
       content: '';
       min-width: 1rem;
     }
+  }
+`;
+
+export const Extra = styled.p`
+  display: ${({ isWrapped }) => (isWrapped ? 'block' : 'inline-block')};
+
+  margin-bottom: ${({ isWrapped }) => isWrapped && '0.2rem'};
+
+  margin-left: ${({ isWrapped }) => !isWrapped && '0.5rem'};
+  transform: ${({ isWrapped }) => !isWrapped && 'translateY(-30%)'};
+
+  @media ${bp.xs}, ${bp.md} {
+    display: block;
+
+    margin: 0 0 0.2rem 0;
+
+    transform: none;
+  }
+
+  @media ${bp.xs} {
+    padding: 0 1rem;
   }
 `;
 
