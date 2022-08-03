@@ -249,7 +249,6 @@ export const Rate = styled.h3`
 
 export const Logos = styled.ul`
   display: ${({ isWrapped }) => (isWrapped ? 'flex' : 'inline-flex')};
-  align-items: center;
 
   margin: 0.2rem 0;
 
