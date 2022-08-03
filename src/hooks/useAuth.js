@@ -142,7 +142,7 @@ export function AuthProvider({ children }) {
     setIsLoading(true);
 
     try {
-      await signInWithPopup(auth, provider);
+      const { user } = await signInWithPopup(auth, provider);
 
       await setDoc(doc(db, 'users', user.uid), {});
 
@@ -150,7 +150,7 @@ export function AuthProvider({ children }) {
 
       setIsLoading(false);
     } catch (err) {
-      alert(err.message);
+      console.log(err.message);
 
       setIsLoading(false);
     }
