@@ -45,6 +45,7 @@ export const Container = styled.header`
 
   @media ${bp.xs}, ${bp.md} {
     height: 80vh;
+    top: 40px;
 
     &::before {
       display: none;
@@ -281,7 +282,7 @@ export const Indicator = styled.ul`
   }
 
   @media ${bp.xs} {
-    bottom: -4rem;
+    bottom: -3rem;
     left: 0;
     right: 0;
 
