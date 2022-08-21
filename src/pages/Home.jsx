@@ -20,7 +20,7 @@ const Wrapper = styled.section`
 
   @media ${bp.md} {
     padding: 0.5rem 2rem;
-    margin-top: 1rem;
+    margin-top: 3rem;
   }
 `;
 

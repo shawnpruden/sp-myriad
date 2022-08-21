@@ -61,7 +61,7 @@ export const Button = styled.button`
 
   transition: 0.5s;
   &:hover {
-    color: var(--color-primary);
+    opacity: 1;
   }
 
   svg {
