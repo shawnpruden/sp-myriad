@@ -186,6 +186,9 @@ export default function Login() {
                 name="confirmation"
                 placeholder="Confirm Password"
                 {...register('confirmation', options.confirmation)}
+                style={{
+                  border: errors.confirmation && '2px solid var(--color-red)',
+                }}
               />
               <Error style={errors.confirmation ? visible : invisible}>
                 {errors.confirmation ? (
