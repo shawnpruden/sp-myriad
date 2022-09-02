@@ -4,17 +4,27 @@ This project is created using The Movie Database API. It gives users the ability
 
 ## Demo Images
 ### _▫️Smartphone_
-![Myriad](https://github.com/shawnpruden/sp-myriad/blob/main/images/myriad-smartphone.jpeg?raw=true)
-
-### _▫️Tablet_
-![Myriad](https://github.com/shawnpruden/sp-myriad/blob/main/images/myriad-tablet.jpeg?raw=true)
-
-### _▫️Desktop_
-![Myriad](https://github.com/shawnpruden/sp-myriad/blob/main/images/myriad-home.png?raw=true)
+![Myriad](https://github.com/shawnpruden/sp-myriad/blob/main/demo/myriad-smartphone.jpeg?raw=true)
 
 ---
 
-![Myriad](https://github.com/shawnpruden/sp-myriad/blob/main/images/myriad-detail.png?raw=true)
+### _▫️Tablet_
+![Myriad](https://github.com/shawnpruden/sp-myriad/blob/main/demo/myriad-tablet.jpeg?raw=true)
+
+---
+
+### _▫️Desktop_
+![Myriad](https://github.com/shawnpruden/sp-myriad/blob/main/demo/myriad-home.png?raw=true)
+
+---
+
+![Myriad](https://github.com/shawnpruden/sp-myriad/blob/main/demo/myriad-watchlist.png?raw=true)
+
+---
+
+![Myriad](https://github.com/shawnpruden/sp-myriad/blob/main/demo/myriad-detail.png?raw=true)
+
+---
 
 ## Key Features
 - Browse the latest & high rated movies and TV series
