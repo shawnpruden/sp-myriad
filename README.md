@@ -1,6 +1,6 @@
 # [Myriad](https://sp-myriad.netlify.app)
 
-This project is created using The Movie Database API. It gives users the ability to find information related to films and television series - including plot summaries, showtimes, ratings, casts and trailers.
+This project is created using The Movie Database API. It gives users the ability to find information related to films and television series — including plot summaries, showtimes, ratings, casts and trailers.
 
 ## Demo Images
 ### _▫️Smartphone_
